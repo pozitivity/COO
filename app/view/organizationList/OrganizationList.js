@@ -10,6 +10,7 @@ Ext.define('COO.view.organizationList.OrganizationList',{
 	multiSelect: false,
 	hidden: true,
 	columnLines: false,
+	style: 'margin-top:87px',
 	store: 'OrganizationStore',
 	columns: {
 		items: [
