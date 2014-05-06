@@ -44,9 +44,9 @@ Ext.define('COO.view.Container', {
 		//collapsed: true,
 		layout: 'fit',
 		items: [
-			{
-				xtype: 'rubricList'
-			}
+            {
+                xtype: 'rubricList'
+            }
 		]
     },{
 		region: 'center',
@@ -80,11 +80,24 @@ Ext.define('COO.view.Container', {
 	{
 		region: 'north',
 		xtype: 'panel',
+        layout:{
+            type: 'hbox',
+            //align: 'stretch',
+            // pack: 'stretch'
+        },
 		height: 130,
 		items: [
 			{
 				html: '<div id = "logo"></div>'
-			}
+			},
+            {
+                xtype: 'combo',
+                displayField: 'cityName',
+                store: 'CityStore',
+                fieldLabel: 'Choose City: ',
+                style: 'margin-top: 50px; margin-left: 50px;',
+                itemId: 'combo-choose-city-id'
+            }
 		]
 	},
 	{

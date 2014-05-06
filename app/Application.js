@@ -20,7 +20,8 @@ Ext.define('COO.Application', {
 
     stores: [
         'RubricStore',
-		'OrganizationStore'
+		'OrganizationStore',
+        'CityStore'
     ],
     
     launch: function () {

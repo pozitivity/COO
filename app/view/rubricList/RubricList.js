@@ -7,6 +7,7 @@ Ext.define('COO.view.rubricList.RubricList',{
 	alias: 'widget.rubricList',
 	itemId: 'rubric-list-gridpanel',
 	forceFit: true,
+    autoScroll: true,
 	hideHeaders: true,
 	stateful: true,
 	selType: 'rowmodel',
