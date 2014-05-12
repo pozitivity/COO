@@ -9,7 +9,7 @@ Ext.define('COO.store.CityStore',{
 
     proxy: {
         type: 'rest',
-        url: '/SFO/rest/cityService/cities',
+        url: '/SFO/rest/city/cities',
         method: 'GET',
 
 

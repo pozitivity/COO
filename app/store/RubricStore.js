@@ -7,7 +7,7 @@ Ext.define('COO.store.RubricStore',{
 	autoLoad: true,
 	proxy: {
 		type: 'rest',
-		url: '/SFO/rest/rubricService/rubrics',
+		url: '/SFO/rest/rubric/rubrics',
 		method: 'GET',
 
 		headers: {

@@ -6,7 +6,7 @@ Ext.define('COO.store.OrganizationStore',{
 
 	proxy: {
 		type: 'rest',
-		url: '/SFO/rest/organizationService/organizations',
+		url: '/SFO/rest/organization/organizations',
 		method: 'GET',
 
 
