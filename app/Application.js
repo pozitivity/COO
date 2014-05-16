@@ -18,7 +18,8 @@ Ext.define('COO.Application', {
     controllers: [
 		'Container',
 		'RubricList',
-		'OrganizationList'
+		'OrganizationList',
+        'WelcomePanel'
     ],
 
     stores: [
@@ -47,6 +48,7 @@ Ext.define('COO.Application', {
                     listeners: {
                         afteranimate: function(el, startTime, eOpts) {
                             Ext.widget('welcomePanel');
+                            //Ext.create('COO.view.Container');
                         }
                     }
                 });

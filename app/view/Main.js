@@ -3,7 +3,8 @@ Ext.define("COO.view.Main", {
     alias: 'widget.mainpanel',
 
     requires: [
-    	'COO.view.rubricList.RubricList'
+    	'COO.view.rubricList.RubricList',
+    	'COO.view.organizationList.OrganizationList'
     ],
 
     layout: {
@@ -17,7 +18,7 @@ Ext.define("COO.view.Main", {
 			xtype: 'panel',
 			width: 300,
 			flex: 1,
-			collapsible: true,
+			//collapsible: true,
 			layout: 'fit',
 			items: [
 				{
@@ -28,7 +29,20 @@ Ext.define("COO.view.Main", {
 		},
 		{
 			xtype: 'panel',
-			flex: 5
+			flex: 1,
+			width: 300,
+			//collapsible: true,
+			layout: 'fit',
+			items: [
+				{
+					xtype: 'organizationList',
+					autoScroll: true
+				}
+			]
+		},
+		{
+			xtype: 'panel',
+			flex: 4
 		},
 		{
 			xtype:'form',

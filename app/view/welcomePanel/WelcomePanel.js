@@ -1,5 +1,5 @@
 Ext.define('COO.view.welcomePanel.WelcomePanel',{
-	extend: 'Ext.panel.Panel',
+	extend: 'Ext.window.Window',
 	alias: 'widget.welcomePanel',
 	
 	itemId: 'welcome-panel-id',
@@ -10,9 +10,13 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 		pack: 'stretch'
 	},
 	
-	closable: true,
+	closable: false,
 	border: true,
-	
+	modal: true,
+	shadow: false,
+	height:600,
+	width: 1000,
+	autoShow: true,
 	defaults: {
 		padding: 20
 	},
@@ -25,37 +29,18 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 			height: 100
 		},
 		{
-			xtype: 'panel',
-			layout: {
-				type: 'hbox',
-				align: 'end',
-				pack: 'end'
-			},
-			items: [
-				{
-					xtype: 'toolbar',
-					items: [
-						{
-							xtype: 'button',
-							text: 'Registration',
-							scale: 'small'
-						},
-						{
-							xtype: 'tbspacer',
-							width: 50
-						},
-						{
-							xtype: 'button',
-							text: 'Ok, thanks',
-							scale: 'small',
-							listeners: {
-								click: 'onCloseWindowClick'
-							},
-							itemId: 'ok-close'
-						}
-					]
-				}
-			]
+			xtype: 'combo',
+            displayField: 'cityName',
+            store: 'CityStore',
+            fieldLabel: 'Choose City: ',
+            style: 'margin-top: 50px; margin-left: 50px;',
+            itemId: 'combo-choose-city-id'
+		},
+		{
+			xtype: 'button',
+			text: 'Ok, thanks',
+			itemId: 'close-welcome-panel-id',
+			scale: 'small'
 		}
 	]
 });
