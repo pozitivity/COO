@@ -8,8 +8,11 @@ Ext.define('COO.Application', {
     
     name: 'COO',
 
+    splashscreen:{},
+
     views: [
-        'Container'
+        'Container',
+        'welcomePanel.WelcomePanel'
     ],
 
     controllers: [
@@ -24,7 +27,32 @@ Ext.define('COO.Application', {
         'CityStore'
     ],
     
+
+    init: function(){
+        splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
+        console.log('Init application');
+    },
+
     launch: function () {
         console.log('Launch application');
-    }
+        var task = new Ext.util.DelayedTask(function() {
+                splashscreen.fadeOut({
+                    duration: 500,
+                    remove: true
+                });
+                
+                splashscreen.next().fadeOut({
+                    duration: 500,
+                    remove: true,
+                    listeners: {
+                        afteranimate: function(el, startTime, eOpts) {
+                            Ext.widget('welcomePanel');
+                        }
+                    }
+                });
+            });
+
+            task.delay(1000);
+    },
+
 });

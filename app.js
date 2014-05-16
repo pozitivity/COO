@@ -9,7 +9,7 @@ Ext.application({
 
     extend: 'COO.Application',
     
-    autoCreateViewport: 'COO.view.Container'
+    //autoCreateViewport: 'COO.view.Container'
 	
     //-------------------------------------------------------------------------
     // Most customizations should be made to COO.Application. If you need to

@@ -363,6 +363,36 @@
         "name": "rubricList.RubricList",
         "viewFileName": "rubricList/RubricList"
       }
+    },
+    "app/view/Header.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "appName": "COO",
+        "viewName": "Header",
+        "name": "Header",
+        "viewFileName": "Header"
+      }
+    },
+    "app/view/Main.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "appName": "COO",
+        "viewName": "Main",
+        "name": "Main",
+        "viewFileName": "Main"
+      }
+    },
+    "app/view/Footer.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "appName": "COO",
+        "viewName": "Footer",
+        "name": "Footer",
+        "viewFileName": "Footer"
+      }
     }
   }
 }

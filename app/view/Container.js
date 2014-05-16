@@ -6,19 +6,35 @@
  * TODO - Replace this content of this view to suite the needs of your application.
  */					
 Ext.define('COO.view.Container', {
-    extend: 'Ext.container.Container',
+    extend: 'Ext.container.Viewport',
 
 	requires:[
 		'COO.view.rubricList.RubricList',
 		'COO.view.organizationList.OrganizationList',
-		'COO.view.welcomePanel.WelcomePanel'
+		'COO.view.welcomePanel.WelcomePanel',
+		'COO.view.Header',
+		'COO.view.Main'
 	],
 	
     layout: {
-        type: 'border'
+        type: 'vbox'
     },
 
     items: [
+        {
+			height: 130,
+            xtype: 'headerpanel'
+        },
+        {
+            xtype: 'mainpanel'
+        },
+        /*{
+            xtype: 'footerpanel'
+        } */
+    ],
+    renderTo: Ext.getBody()
+
+    /*items: [
 	{
 		xtype:'panel',
 		region:'east',
@@ -109,5 +125,5 @@ Ext.define('COO.view.Container', {
 				
 			}
 		]
-	}]
+	}]*/
 });
