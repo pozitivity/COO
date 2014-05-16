@@ -4,7 +4,8 @@ Ext.define("COO.view.Main", {
 
     requires: [
     	'COO.view.rubricList.RubricList',
-    	'COO.view.organizationList.OrganizationList'
+    	'COO.view.organizationList.OrganizationList',
+    	'COO.view.infoCompany.InfoCompany'
     ],
 
     layout: {
@@ -42,7 +43,13 @@ Ext.define("COO.view.Main", {
 		},
 		{
 			xtype: 'panel',
-			flex: 4
+			flex: 4,
+			layout: 'fit',
+			items: [
+				{
+					xtype: 'infoCompanyPanel'
+				}
+			]
 		},
 		{
 			xtype:'form',

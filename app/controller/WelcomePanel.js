@@ -16,7 +16,6 @@ Ext.define('COO.controller.WelcomePanel',{
 	
 	onCloseWelcomePanel: function(button, e, options) {
 		console.log('Button Ok, thanks pressed');
-		//Ext.ComponentQuery.query('#welcome-panel-id')[0].removeAll();
 		var wrc = Ext.ComponentQuery.query('#welcome-panel-id')[0];
 		wrc.removeAll();
 		wrc.close();

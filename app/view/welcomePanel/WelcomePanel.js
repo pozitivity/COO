@@ -40,7 +40,7 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 			xtype: 'button',
 			text: 'Ok, thanks',
 			itemId: 'close-welcome-panel-id',
-			scale: 'small'
+			//scale: 'small'
 		}
 	]
 });

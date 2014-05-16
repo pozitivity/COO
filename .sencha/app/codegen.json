@@ -393,6 +393,26 @@
         "name": "Footer",
         "viewFileName": "Footer"
       }
+    },
+    "app/view/login/Login.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "appName": "COO",
+        "viewName": "login.Login",
+        "name": "login.Login",
+        "viewFileName": "login/Login"
+      }
+    },
+    "app/view/registration/RegistrationForm.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "appName": "COO",
+        "viewName": "registration.RegistrationForm",
+        "name": "registration.RegistrationForm",
+        "viewFileName": "registration/RegistrationForm"
+      }
     }
   }
 }

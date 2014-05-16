@@ -4,15 +4,28 @@ Ext.define('COO.view.rubricList.RubricListController',{
 	alias:'controller.rubricListController',
 	
 	requires: [
-		'COO.view.organizationList.OrganizationList'
+		'COO.view.organizationList.OrganizationList',
+		'COO.view.infoCompany.InfoCompany'
+	],
+
+	refs: [
+		{
+			ref: 'infoCompanyPanelRef',
+			selector: '#info-company-id'
+		},
+		{
+			ref: 'organizationListGridPanelRef',
+			selector: '#organization-list-gridpanel'
+		}
 	],
 	
 	init:function(){
-		console.log('[OK] init ViewController RubricList');
+		console.log('[OK] Init ViewController RubricList');
 	},
 	
 	onButtonBack:function(button, e, options){
 		Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
+		Ext.ComponentQuery.query('#info-company-id')[0].hide();
 		this.getView().getStore().load();
 	}
 });

@@ -31,6 +31,10 @@ Ext.define('COO.Application', {
 
     init: function(){
         splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
+        splashscreen.addCls('splashscreen');
+            Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
+                cls: 'x-splash-icon'
+            });
         console.log('Init application');
     },
 
@@ -47,8 +51,8 @@ Ext.define('COO.Application', {
                     remove: true,
                     listeners: {
                         afteranimate: function(el, startTime, eOpts) {
-                            Ext.widget('welcomePanel');
-                            //Ext.create('COO.view.Container');
+                            //Ext.widget('welcomePanel');
+                            Ext.create('COO.view.Container');
                         }
                     }
                 });

@@ -9,11 +9,9 @@ Ext.define('COO.view.Container', {
     extend: 'Ext.container.Viewport',
 
 	requires:[
-		'COO.view.rubricList.RubricList',
-		'COO.view.organizationList.OrganizationList',
-		'COO.view.welcomePanel.WelcomePanel',
 		'COO.view.Header',
-		'COO.view.Main'
+		'COO.view.Main',
+		'COO.view.Footer'
 	],
 	
     layout: {
@@ -22,15 +20,31 @@ Ext.define('COO.view.Container', {
 
     items: [
         {
-			height: 130,
-            xtype: 'headerpanel'
+			flex: 1,
+            xtype: 'headerpanel',
+            itemId: 'header-panel-id'
         },
         {
+        	flex: 6,
             xtype: 'mainpanel'
         },
-        /*{
-            xtype: 'footerpanel'
-        } */
+        {
+        	flex: 0.5,
+        	//xtype: 'footerpanel'
+        	xtype: 'panel',
+        	layout: {
+        		type: 'vbox',
+        		align: 'center',
+        		pack: 'center'
+        	},
+        	margin: '0 0 0 500',
+        	items: [
+        		{
+        			xtype: 'footerpanel'
+        		}
+        	]
+
+        } 
     ],
     renderTo: Ext.getBody()
 
