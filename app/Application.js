@@ -19,7 +19,10 @@ Ext.define('COO.Application', {
 		'Container',
 		'RubricList',
 		'OrganizationList',
-        'WelcomePanel'
+        'WelcomePanel',
+        'Header',
+        'Login',
+        'Registration'
     ],
 
     stores: [

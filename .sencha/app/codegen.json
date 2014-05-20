@@ -413,6 +413,28 @@
         "name": "registration.RegistrationForm",
         "viewFileName": "registration/RegistrationForm"
       }
+    },
+    "app/controller/Login.js": {
+      "source": "{controllerFileName}.js.tpl.merge",
+      "version": "b092f4aad11d2f7eaab5ce3e2dcc2fc3134f3188",
+      "parameters": {
+        "appName": "COO",
+        "controllerName": "Login",
+        "controllerFileName": "Login",
+        "name": "Login",
+        "controllerNamespace": "COO.controller"
+      }
+    },
+    "app/controller/registration.js": {
+      "source": "{controllerFileName}.js.tpl.merge",
+      "version": "b092f4aad11d2f7eaab5ce3e2dcc2fc3134f3188",
+      "parameters": {
+        "appName": "COO",
+        "controllerName": "registration",
+        "controllerFileName": "registration",
+        "name": "registration",
+        "controllerNamespace": "COO.controller"
+      }
     }
   }
 }

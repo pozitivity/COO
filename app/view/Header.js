@@ -2,6 +2,9 @@ Ext.define("COO.view.Header", {
     extend: 'Ext.panel.Panel',
     alias: 'widget.headerpanel',
 
+    requires: [
+    	'COO.view.login.Login'
+    ],
     layout: {
 		type: 'hbox'
 	},
