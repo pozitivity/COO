@@ -6,21 +6,27 @@ Ext.define("COO.view.Header", {
     	'COO.view.login.Login'
     ],
     layout: {
-		type: 'hbox'
+		type: 'hbox',
+		pack: 'start',
+		align: 'middle'
 	},
-	
+	//width: 1024,
 	items: [
 		{
 			html: '<div id = "logo"></div>'
 		},
 		{
 			xtype: 'panel',
+			minWidth: 1100,
 			layout: {
 				type: 'hbox',
+				padding: '5px',
+				pack: 'end',
+				align: 'middle'
 			},
 			items: [
 				{
-					margin: '30 0 0 1150',
+					margin: '30 0 0 0',
 					xtype: 'button',
 					text: 'Войти',
 					itemId: 'login-open-id'

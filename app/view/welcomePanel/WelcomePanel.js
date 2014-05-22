@@ -17,9 +17,6 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 	height:600,
 	width: 1000,
 	autoShow: true,
-	defaults: {
-		padding: 20
-	},
 	
 	margin: '0 100 0 0',
 	
@@ -32,15 +29,15 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 			xtype: 'combo',
             displayField: 'cityName',
             store: 'CityStore',
-            fieldLabel: 'Choose City: ',
+            fieldLabel: 'Choose City',
             style: 'margin-top: 50px; margin-left: 50px;',
             itemId: 'combo-choose-city-id'
 		},
 		{
 			xtype: 'button',
-			text: 'Ok, thanks',
+			text: 'Ok',
 			itemId: 'close-welcome-panel-id',
-			//scale: 'small'
+			scale: 'small'
 		}
 	]
 });

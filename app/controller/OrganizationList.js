@@ -11,6 +11,14 @@ Ext.define('COO.controller.OrganizationList',{
 		{
 			ref: 'infoCompanyPanelRef',
 			selector: '#info-company-id'
+		},
+		{
+			ref: 'infoCompanyFormRef',
+			selector: '#info-form-company-id'
+		},
+		{
+			ref: 'logoCompanyRef',
+			selector: '#logo-company-id'
 		}
 	],
 
@@ -25,5 +33,21 @@ Ext.define('COO.controller.OrganizationList',{
 	onChangeCompany: function(view, record, item, index, e){
 		console.log(record.data);
 		this.getInfoCompanyPanelRef().show();
+		this.getInfoCompanyFormRef().getForm().setValues(record.data);
+		Ext.Ajax.request({
+			method: 'GET',
+			params: {
+				logoId: record.data.logo.logoId
+			},
+			url: '/SFO/rest/logo/findById',
+			success: function(conn, response){
+				console.log(Ext.decode(conn.responseText));
+				this.getLogoCompanyRef().setSrc(Ext.decode(conn.responseText).logo);
+			},
+			failure: function(){
+
+			},
+			scope: this
+		});
 	}
 });

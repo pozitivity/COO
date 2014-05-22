@@ -54,8 +54,8 @@ Ext.define('COO.Application', {
                     remove: true,
                     listeners: {
                         afteranimate: function(el, startTime, eOpts) {
-                            //Ext.widget('welcomePanel');
-                            Ext.create('COO.view.Container');
+                            Ext.widget('welcomePanel');
+                            //Ext.create('COO.view.Container');
                         }
                     }
                 });

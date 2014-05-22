@@ -3,12 +3,12 @@ Ext.define("COO.view.Footer", {
 	alias: 'widget.footerpanel',
 	layout: {
 		type: 'hbox',
-		pack: 'stretch',
+		pack: 'center',
 		align: 'stretch'
 	},
+	minWidth:1300,
 	items: [
 		{
-			minWidth:700,
 			html: '<div>© 2014 COO, Tatyana Gorbunova and Elina Komaleva,  Contacts: tatiana.gorbunova@outlook.com</div>'
 		}
 	]

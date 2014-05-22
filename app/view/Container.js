@@ -17,10 +17,13 @@ Ext.define('COO.view.Container', {
     layout: {
         type: 'vbox'
     },
-
+    minWidth: 1024,
+    minHeight: 700,
+    autoScroll: true,
     items: [
         {
-			flex: 1,
+			//flex: 1,
+			height: 130,
             xtype: 'headerpanel',
             itemId: 'header-panel-id'
         },
@@ -37,7 +40,7 @@ Ext.define('COO.view.Container', {
         		align: 'center',
         		pack: 'center'
         	},
-        	margin: '0 0 0 500',
+        	//margin: '0 0 0 500',
         	items: [
         		{
         			xtype: 'footerpanel'

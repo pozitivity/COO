@@ -10,7 +10,6 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
 	items:[
     {
 		xtype: 'form',
-		//itemId: 'info-company-id',
 
 		layout: {
 			type: 'hbox',
@@ -29,13 +28,14 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
 		{
 			xtype: 'form',
             padding: '0 20 0 20',
+            itemId: 'info-form-company-id',
 
 			layout: {
 				type: 'vbox'
 			},
 
 			defaults: {
-                labelWidth: 180
+                labelWidth: 100
             },
 
 			items:[
@@ -46,7 +46,7 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
 				{
                     xtype: 'displayfield',
                     name: 'name',
-                    fieldLabel: 'Имя: '
+                    fieldLabel: 'Имя'
                 },
 				{
 					xtype: 'displayfield',
@@ -59,12 +59,12 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
                 {
                     xtype: 'displayfield',
                     name: 'phone',
-                    fieldLabel: 'Телефон: '
+                    fieldLabel: 'Телефон'
                 },
                 {
                     xtype: 'displayfield',
                     name: 'address',
-                    fieldLabel:'Адрес: '
+                    fieldLabel:'Адрес'
                 }
 			]
 		}
