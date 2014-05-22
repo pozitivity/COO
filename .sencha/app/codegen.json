@@ -435,6 +435,17 @@
         "name": "registration",
         "controllerNamespace": "COO.controller"
       }
+    },
+    "app/controller/mainPanels/RegHeader.js": {
+      "source": "{controllerFileName}.js.tpl.merge",
+      "version": "b092f4aad11d2f7eaab5ce3e2dcc2fc3134f3188",
+      "parameters": {
+        "appName": "COO",
+        "controllerName": "mainPanels.RegHeader",
+        "controllerFileName": "mainPanels/RegHeader",
+        "name": "mainPanels.RegHeader",
+        "controllerNamespace": "COO.controller"
+      }
     }
   }
 }

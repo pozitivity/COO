@@ -6,7 +6,8 @@ Ext.define('COO.controller.Container', {
 	],
 	
 	requires: [
-		'COO.view.welcomePanel.WelcomePanel'
+		'COO.view.welcomePanel.WelcomePanel',
+		'COO.view.Header'
 	],
 	
 	init:function(){
@@ -15,10 +16,17 @@ Ext.define('COO.controller.Container', {
 		this.control({
 			'#combo-choose-city-id': {
                 change: this.onChangeCity
+            },
+            '#header-panel-id': {
+            	beforerender: this.setHeader
             }
 		});
 	},
-	
+	setHeader: function(){
+		var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
+		wrc.removeAll();
+		wrc.add(Ext.widget('headerpanel'));
+	},
 	setActiveCenterRegion: function(name) {
 		var wrc = Ext.getCmp('panel-center');
 		wrc.removeAll();

@@ -30,6 +30,9 @@ d=f.length;for(l=0;l<d;l++)m=f[l].split(":")}return m},initPlatformTags:function
 d+".json"),d=JSON.parse(d.content));return Ext.manifest=d},load:function(d){d=q.initManifest(d);var j=d.loadOrder,l=j?p.createLoadOrderMap(j):null,f=[],m=(d.js||[]).concat(d.css||[]),n,s,g,t,h=function(){u=!0;q.notify()};g=m.length;for(s=0;s<g;s++)n=m[s],t=!0,n.platform&&!q.filterPlatform(n.platform)&&(t=!1),t&&f.push(n.path);j&&(d.loadOrderMap=l);p.load({url:f,loadOrder:j,loadOrderMap:l,sequential:!0,success:h,failure:h})},onMicroloaderReady:function(d){u?d():n.push(d)},notify:function(){for(var d;d=
 n.shift();)d()}};return q}();Ext.manifest=Ext.manifest||"bootstrap";Ext.Microloader.load();</script>
 	
+	<!-- add style -->
+	<link href = "resources/css/coo.css" rel = "stylesheet" type = "text/css">
+	
 </head>
 <body></body>
 </html>

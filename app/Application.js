@@ -22,7 +22,8 @@ Ext.define('COO.Application', {
         'WelcomePanel',
         'Header',
         'Login',
-        'Registration'
+        'Registration',
+        'mainPanels.RegHeader'
     ],
 
     stores: [
@@ -54,8 +55,8 @@ Ext.define('COO.Application', {
                     remove: true,
                     listeners: {
                         afteranimate: function(el, startTime, eOpts) {
-                            Ext.widget('welcomePanel');
-                            //Ext.create('COO.view.Container');
+                            //Ext.widget('welcomePanel');
+                            Ext.create('COO.view.Container');
                         }
                     }
                 });

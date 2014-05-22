@@ -10,6 +10,7 @@ Ext.define("COO.view.Header", {
 		pack: 'start',
 		align: 'middle'
 	},
+	id: 'header-common-id',
 	//width: 1024,
 	items: [
 		{

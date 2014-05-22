@@ -1281,16 +1281,31 @@ Ext.Loader.addClassPathMappings({
 Ext.ClassManager.addNameAlternateMappings({
   "COO.Application": [],
   "COO.controller.Container": [],
+  "COO.controller.Header": [],
+  "COO.controller.Login": [],
   "COO.controller.OrganizationList": [],
+  "COO.controller.Registration": [],
   "COO.controller.RubricList": [],
+  "COO.controller.WelcomePanel": [],
+  "COO.controller.mainPanels.RegHeader": [],
+  "COO.model.City": [],
   "COO.model.Organization": [],
   "COO.model.Rubric": [],
+  "COO.store.CityStore": [],
   "COO.store.OrganizationStore": [],
   "COO.store.RubricStore": [],
   "COO.view.Container": [],
+  "COO.view.Footer": [],
+  "COO.view.Header": [],
+  "COO.view.Main": [],
+  "COO.view.infoCompany.InfoCompany": [],
+  "COO.view.login.Login": [],
   "COO.view.organizationList.OrganizationList": [],
+  "COO.view.regPanels.RegHeader": [],
+  "COO.view.registration.RegistrationForm": [],
   "COO.view.rubricList.RubricList": [],
   "COO.view.rubricList.RubricListController": [],
+  "COO.view.welcomePanel.WelcomePanel": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
   "Ext.Action": [],
@@ -2328,10 +2343,19 @@ Ext.ClassManager.addNameAlternateMappings({
 Ext.ClassManager.addNameAliasMappings({
   "COO.Application": [],
   "COO.controller.Container": [],
+  "COO.controller.Header": [],
+  "COO.controller.Login": [],
   "COO.controller.OrganizationList": [],
+  "COO.controller.Registration": [],
   "COO.controller.RubricList": [],
+  "COO.controller.WelcomePanel": [],
+  "COO.controller.mainPanels.RegHeader": [],
+  "COO.model.City": [],
   "COO.model.Organization": [],
   "COO.model.Rubric": [],
+  "COO.store.CityStore": [
+    "store.cities"
+  ],
   "COO.store.OrganizationStore": [
     "store.organizations"
   ],
@@ -2339,14 +2363,38 @@ Ext.ClassManager.addNameAliasMappings({
     "store.rubrics"
   ],
   "COO.view.Container": [],
+  "COO.view.Footer": [
+    "widget.footerpanel"
+  ],
+  "COO.view.Header": [
+    "widget.headerpanel"
+  ],
+  "COO.view.Main": [
+    "widget.mainpanel"
+  ],
+  "COO.view.infoCompany.InfoCompany": [
+    "widget.infoCompanyPanel"
+  ],
+  "COO.view.login.Login": [
+    "widget.login"
+  ],
   "COO.view.organizationList.OrganizationList": [
     "widget.organizationList"
+  ],
+  "COO.view.regPanels.RegHeader": [
+    "widget.regHeader"
+  ],
+  "COO.view.registration.RegistrationForm": [
+    "widget.registration"
   ],
   "COO.view.rubricList.RubricList": [
     "widget.rubricList"
   ],
   "COO.view.rubricList.RubricListController": [
     "controller.rubricListController"
+  ],
+  "COO.view.welcomePanel.WelcomePanel": [
+    "widget.welcomePanel"
   ],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],

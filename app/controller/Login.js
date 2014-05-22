@@ -3,6 +3,10 @@ Ext.define('COO.controller.Login', {
     views: [
     	'COO.view.login.Login'
     ],
+    requires: [
+        'COO.view.regPanels.RegHeader',
+        'COO.view.Header'
+    ],
 
     refs: [
     	{
@@ -25,6 +29,9 @@ Ext.define('COO.controller.Login', {
     	login = this.getLoginFormRef().getForm().getValues().login;
     	dialog = Ext.WindowManager.getActive();
     	this.login(login, password, dialog);
+        var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
+        wrc.removeAll();
+        wrc.add(Ext.widget('regHeader'));
     },
     login: function(login, password, dialog){
     	Ext.Ajax.request({

@@ -11,7 +11,8 @@ Ext.define('COO.view.Container', {
 	requires:[
 		'COO.view.Header',
 		'COO.view.Main',
-		'COO.view.Footer'
+		'COO.view.Footer',
+		'COO.view.regPanels.RegHeader'
 	],
 	
     layout: {
@@ -24,7 +25,7 @@ Ext.define('COO.view.Container', {
         {
 			//flex: 1,
 			height: 130,
-            xtype: 'headerpanel',
+            //xtype: 'headerpanel',
             itemId: 'header-panel-id'
         },
         {
