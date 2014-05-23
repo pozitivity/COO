@@ -19,6 +19,14 @@ Ext.define('COO.controller.OrganizationList',{
 		{
 			ref: 'logoCompanyRef',
 			selector: '#logo-company-id'
+		},
+		{
+			ref: 'nameCompanyRef',
+			selector: '#name-company-id'
+		},
+		{
+			ref: 'addInfoCompanyHtmlRef',
+			selector: '#add-info-company-id'
 		}
 	],
 
@@ -32,8 +40,13 @@ Ext.define('COO.controller.OrganizationList',{
 	},
 	onChangeCompany: function(view, record, item, index, e){
 		console.log(record.data);
+		var wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
+		wrc.add(Ext.widget('infoCompanyPanel'));
 		this.getInfoCompanyPanelRef().show();
 		this.getInfoCompanyFormRef().getForm().setValues(record.data);
+		this.getNameCompanyRef().getForm().setValues(record.data);
+		this.getAddInfoCompanyHtmlRef().update(record.data.info.info);
+
 		Ext.Ajax.request({
 			method: 'GET',
 			params: {

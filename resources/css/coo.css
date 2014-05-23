@@ -36,3 +36,42 @@
     background-color: transparent;
     background-position: top center;
 }
+.x-btn.toolbar .x-btn-inner{
+    outline: none !important;
+    border: none !important;
+    background: none !important;
+    background-color: rgb(255,255,255) !important;
+    color: black;
+    background-color: rgb(255,255,255) !important;
+}
+.x-btn.x-btn-over.toolbar {
+    color: red !important;
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+    background-color: rgb(255,255,255) !important;
+}
+.x-btn.x-btn-focus.toolbar {
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+}
+
+.x-btn.toolbar.pressed-button .x-btn-inner {
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+    background-color: rgb(255,255,255) !important;
+}
+.x-btn-default-small.toolbar{
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+}
+.companyName .x-form-display-field{
+    font-size: 24px !important;
+}
+.infoAboutCompany .x-form-textarea{
+    border-radius: 5px !important;
+    font-size: 15px !important;
+}

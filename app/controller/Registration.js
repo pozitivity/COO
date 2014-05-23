@@ -27,6 +27,30 @@ Ext.define('COO.controller.Registration', {
     	cityName = Ext.ComponentQuery.query('#registration-choose-city-id')[0].value;
     	dialog = Ext.WindowManager.getActive();
     	this.registration(login, password, cityName, dialog);
+        splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
+        splashscreen.addCls('splashscreen');
+            Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
+                cls: 'x-splash-icon'
+            });
+        var task = new Ext.util.DelayedTask(function() {
+            splashscreen.fadeOut({
+                duration: 500,
+                remove: true
+            });
+                
+            splashscreen.next().fadeOut({
+                duration: 500,
+                remove: true,
+                listeners: {
+                    afteranimate: function(el, startTime, eOpts) {
+                        var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
+                        wrc.removeAll();
+                        wrc.add(Ext.widget('regHeader'));
+                    }
+                }
+            });
+        });
+        task.delay(1000);
     },
     registration: function(login, password, cityName, dialog){
     	Ext.Ajax.request({

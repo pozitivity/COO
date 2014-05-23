@@ -6,11 +6,23 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
 	hidden: true,
 
 	itemId: 'info-company-id',
-
+	style: 'margin-top: 43px; margin-left: 30px;',
 	items:[
     {
 		xtype: 'form',
-
+		layout: {
+			type: 'vbox'
+		},
+		items: [{
+			xtype: 'form',
+			itemId: 'name-company-id',
+			items: [{
+			xtype: 'displayfield',
+            name: 'name',
+            cls: 'companyName'
+        }]
+		},
+		{
 		layout: {
 			type: 'hbox',
 			pack: 'stretch'
@@ -43,19 +55,6 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
 					xtype: 'hidden',
 					name: 'id'
 				},
-				{
-                    xtype: 'displayfield',
-                    name: 'name',
-                    fieldLabel: 'Имя'
-                },
-				{
-					xtype: 'displayfield',
-					name: 'website',
-                    itemId: 'manage-account-website-link-id',
-                    renderer: function(website) {
-                        return '<a class="website" target="_blank" href="http://' + website + '">' + website + '</a>';
-                    }
-				},
                 {
                     xtype: 'displayfield',
                     name: 'phone',
@@ -65,10 +64,34 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
                     xtype: 'displayfield',
                     name: 'address',
                     fieldLabel:'Адрес'
-                }
+                },
+                {
+                	xtype: 'displayfield',
+                	name: 'postcode',
+                	fieldLabel: 'Индекс'
+                },
+                {
+					xtype: 'displayfield',
+					name: 'website',
+                    itemId: 'manage-account-website-link-id',
+                    renderer: function(website) {
+                        return '<a class="website" target="_blank" href="http://' + website + '">' + website + '</a>';
+                    }
+				},
 			]
 		}
         ]
+    },
+    {
+    	xtype: 'form',
+    	itemId: 'add-info-company-id',
+    	items: [
+    		{
+    			itemId: 'add-info-company-id',
+    			html: '<div></div>'
+    		}
+    	]
+    }]
 	}
    ],
 

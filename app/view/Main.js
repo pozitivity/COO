@@ -43,13 +43,9 @@ Ext.define("COO.view.Main", {
 		},
 		{
 			xtype: 'panel',
+			itemId: 'center-panel-id',
 			flex: 4,
-			layout: 'fit',
-			items: [
-				{
-					xtype: 'infoCompanyPanel'
-				}
-			]
+			layout: 'fit'
 		},
 		{
 			xtype:'form',

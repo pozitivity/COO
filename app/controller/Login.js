@@ -29,9 +29,30 @@ Ext.define('COO.controller.Login', {
     	login = this.getLoginFormRef().getForm().getValues().login;
     	dialog = Ext.WindowManager.getActive();
     	this.login(login, password, dialog);
-        var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
-        wrc.removeAll();
-        wrc.add(Ext.widget('regHeader'));
+        splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
+        splashscreen.addCls('splashscreen');
+            Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
+                cls: 'x-splash-icon'
+            });
+        var task = new Ext.util.DelayedTask(function() {
+            splashscreen.fadeOut({
+                duration: 500,
+                remove: true
+            });
+                
+            splashscreen.next().fadeOut({
+                duration: 500,
+                remove: true,
+                listeners: {
+                    afteranimate: function(el, startTime, eOpts) {
+                        var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
+                        wrc.removeAll();
+                        wrc.add(Ext.widget('regHeader'));
+                    }
+                }
+            });
+        });
+        task.delay(1000);
     },
     login: function(login, password, dialog){
     	Ext.Ajax.request({

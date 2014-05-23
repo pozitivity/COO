@@ -27,17 +27,22 @@ Ext.define('COO.view.regPanels.RegHeader',{
 					xtype: 'button',
 					text: 'Мои компании',
 					margin: '30 0 0 50',
+					cls: 'toolbar',
+					itemId: 'my-companies-id'
 				},
 				{
 					xtype: 'button',
 					text: 'Профиль',
 					margin: '30 0 0 50',
+					cls: 'toolbar',
+					itemId: 'profile-id'
 				},
 				{
 					xtype: 'button',
 					text: 'Выйти',
 					margin: '30 0 0 50',
-					itemId: 'button-logout-id'
+					itemId: 'button-logout-id',
+					cls: 'toolbar'
 				}
 			]
 		}

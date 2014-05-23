@@ -29,14 +29,16 @@ Ext.define("COO.view.Header", {
 				{
 					margin: '30 0 0 0',
 					xtype: 'button',
-					text: 'Войти',
-					itemId: 'login-open-id'
+					text: 'Зарегистрироваться',
+					itemId: 'registration-open-id',
+					cls: 'toolbar'
 				},
 				{
 					margin: '30 0 0 50',
 					xtype: 'button',
-					text: 'Зарегистрироваться',
-					itemId: 'registration-open-id'
+					text: 'Войти',
+					itemId: 'login-open-id',
+					cls: 'toolbar'
 				}
 			]
 		}
