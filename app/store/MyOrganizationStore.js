@@ -1,12 +1,12 @@
-Ext.define('COO.store.OrganizationStore',{
+Ext.define('COO.store.MyOrganizationStore',{
 	extend: 'Ext.data.Store',
-	alias: 'store.organizations',
+	alias: 'store.myOrganizations',
 	model:'COO.model.Organization', 
     //autoLoad: true,
 
 	proxy: {
 		type: 'rest',
-		url: '/SFO/rest/organization/byCityAndByRubric',
+		url: '/SFO/rest/organization/byUser',
 		method: 'GET',
 
 

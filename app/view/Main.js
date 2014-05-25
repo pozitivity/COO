@@ -43,9 +43,15 @@ Ext.define("COO.view.Main", {
 		},
 		{
 			xtype: 'panel',
-			itemId: 'center-panel-id',
+			//itemId: 'center-panel-id',
 			flex: 4,
-			layout: 'fit'
+			layout: 'fit',
+			items: [
+				{
+					xtype: 'panel',
+					itemId: 'center-panel-id'
+				}
+			]
 		},
 		{
 			xtype:'form',
@@ -54,6 +60,26 @@ Ext.define("COO.view.Main", {
 				{
 					xtype:'hidden',
 					name:'mainRubricId'
+				}
+			]
+		},
+		{
+			xtype: 'form',
+			itemId: 'field-userId',
+			items: [
+				{
+					xtype: 'hidden',
+					name: 'userId'
+				}
+			]
+		},
+		{
+			xtype: 'form',
+			itemId: 'field-cityId',
+			items: [
+				{
+					xtype: 'hidden',
+					name: 'cityId'
 				}
 			]
 		}

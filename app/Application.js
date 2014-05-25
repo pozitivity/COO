@@ -23,13 +23,15 @@ Ext.define('COO.Application', {
         'Header',
         'Login',
         'Registration',
-        'mainPanels.RegHeader'
+        'mainPanels.RegHeader',
+        'mainPanels.MyCompanies'
     ],
 
     stores: [
         'RubricStore',
 		'OrganizationStore',
-        'CityStore'
+        'CityStore',
+        'MyOrganizationStore'
     ],
     
 
@@ -57,6 +59,7 @@ Ext.define('COO.Application', {
                         afteranimate: function(el, startTime, eOpts) {
                             //Ext.widget('welcomePanel');
                             Ext.create('COO.view.Container');
+                            Ext.widget('welcomePanel');
                         }
                     }
                 });

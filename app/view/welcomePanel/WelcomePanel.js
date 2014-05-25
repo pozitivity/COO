@@ -5,9 +5,9 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 	itemId: 'welcome-panel-id',
 	
 	layout: {
-		type: 'vbox',
+		type: 'border',
 		align: 'center',
-		pack: 'stretch'
+		//pack: 'stretch'
 	},
 	
 	closable: false,
@@ -22,22 +22,85 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 	
 	items: [
 		{
-			html: '<div style = "font-size: 40px;margin-top: 20px;">Welcome!</div>',
-			height: 100
+			region: 'north',
+			xtype: 'panel',
+			layout: {
+				type: 'hbox',
+				align: 'stretch',
+				pack: 'center'
+			},
+			items: [
+				{
+					html: '<div style = "font-size: 40px;margin-top: 20px;text-align: center;">Добро пожаловать!</div>',
+					height: 100
+				}
+			]
 		},
 		{
-			xtype: 'combo',
-            displayField: 'cityName',
-            store: 'CityStore',
-            fieldLabel: 'Choose City',
-            style: 'margin-top: 50px; margin-left: 50px;',
-            itemId: 'combo-choose-city-id'
+			region: 'center',
+			flex: 5,
+			xtype: 'panel',
+			layout: {
+				type: 'vbox',
+				align: 'stretch',
+				pack: 'stretch'
+			},
+			items: [
+				{
+					html: '<div style="text-align: center;">Здесь будет представлена небольшая инструкция по пользованию системой</div>'
+				},
+				{
+					html: '<div style="text-align: center;">Для начала выберите город:</div>'
+				},
+				{
+					xtype: 'combo',
+            		displayField: 'cityName',
+            		store: 'CityStore',
+            		//fieldLabel: 'Выберите ваш город',
+            		//style: 'margin-top: 50px; margin-left: 50px;',
+            		itemId: 'combo-choose-city-id'
+				}
+			]
 		},
 		{
-			xtype: 'button',
-			text: 'Ok',
-			itemId: 'close-welcome-panel-id',
-			scale: 'small'
+			xtype: 'panel',
+			region: 'south',
+			layout: {
+				type: 'hbox',
+				align: 'middle',
+				pack: 'center'
+			},
+			items: [
+				{
+					xtype: 'button',
+					text: 'Ok',
+					itemId: 'close-welcome-panel-id',
+					scale: 'small',
+					disabled: true
+				}
+			]
+		},
+		{
+			region: 'west',
+			padding: 20,
+			flex: 1,
+			xtype: 'panel',
+			layout: 'hbox',
+			items: [
+				{
+					flex: 1,
+					html: '<--'
+				},
+				{
+					flex: 2,
+					html: 'расположена таблица с рубриками, по которым фильтруются организации'
+				}
+			]
+		},
+		{
+			region: 'east',
+			flex: 1,
+			padding: 20
 		}
 	]
 });

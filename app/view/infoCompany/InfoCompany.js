@@ -3,7 +3,7 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
 
 	alias: 'widget.infoCompanyPanel',
 
-	hidden: true,
+	//hidden: true,
 
 	itemId: 'info-company-id',
 	style: 'margin-top: 43px; margin-left: 30px;',

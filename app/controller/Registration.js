@@ -46,6 +46,21 @@ Ext.define('COO.controller.Registration', {
                         var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
                         wrc.removeAll();
                         wrc.add(Ext.widget('regHeader'));
+                        wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
+                        wrc.removeAll();
+                        Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
+                        var cityId = Ext.ComponentQuery.query('#field-cityId')[0].getForm().getValues().cityId;
+                        Ext.Ajax.request({
+                            url: '/SFO/rest/city/city',
+                            method: 'GET',
+                            params: {
+                                cityId: cityId
+                            },
+                            success: function(conn, response){
+                                var cityName = Ext.decode(conn.responseText).cityName;
+                                Ext.ComponentQuery.query('#regheader-combo-choose-city-id')[0].setValue(cityName);
+                            }
+                        });
                     }
                 }
             });

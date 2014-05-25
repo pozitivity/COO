@@ -14,8 +14,16 @@ Ext.define('COO.view.regPanels.RegHeader',{
 			html: '<div id = "logo"></div>'
 		},
 		{
+			xtype: 'combo',
+            displayField: 'cityName',
+            store: 'CityStore',
+            fieldLabel: 'Город',
+            style: 'margin-top: 50px; margin-left: 20px;',
+            itemId: 'regheader-combo-choose-city-id'
+		},
+		{
 			xtype: 'panel',
-			minWidth: 1100,
+			minWidth: 750,
 			layout: {
 				type: 'hbox',
 				padding: '5px',
