@@ -40,6 +40,7 @@ Ext.define('COO.controller.Login', {
     			password: password
     		},
     		failure: function(){
+                 Ext.util.Cookies.set("isAuth", 0);
     			Ext.Msg.show({
 						title: 'Ошибка',
 						msg: 'Неверный логин или пароль',
@@ -49,6 +50,11 @@ Ext.define('COO.controller.Login', {
     		},    		
     		success: function(conn, response, success){
     			dialog.close();
+                //if (conn.responseText === 'true') {
+                        Ext.util.Cookies.set("isAuth", 1);
+              //      } else {
+              //          Ext.util.Cookies.set("isAuth", 0);
+             //       }
                 Ext.Ajax.request({
                     method: 'GET',
                     url: '/SFO/rest/user/byLogin',

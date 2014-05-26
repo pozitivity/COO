@@ -46,7 +46,10 @@ Ext.define('COO.controller.OrganizationList',{
 		//this.getInfoCompanyPanelRef().show();
 		this.getInfoCompanyFormRef().getForm().setValues(record.data);
 		this.getNameCompanyRef().getForm().setValues(record.data);
-		this.getAddInfoCompanyHtmlRef().update(record.data.info.info);
+		if(record.data.info.info != null){
+			this.getAddInfoCompanyHtmlRef().update(record.data.info.info);
+		}
+		this.getLogoCompanyRef().setSrc('/SFO/rest/logo/byId?logoId='+record.data.logo.logoId);
 
 		/*Ext.Ajax.request({
 			method: 'GET',

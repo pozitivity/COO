@@ -29,11 +29,12 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 				click: this.onButtonAddNewCompanyClick
 			},
 			"#combo-choose-mainRubric-id": {
-				change: this.onChangeMainRubric
+				change: this.onChangeMainRubric,
+				expand: this.loadMainRubric
 			},
 			"#combo-choose-subRubric-id": {
 				change: this.onChangeSubRubric,
-				enable: this.loadSubRubric
+				expand: this.loadSubRubric
 			},
 			"#new-company-combo-choose-city-id": {
 				change: this.onChangeCityInNewCompany
@@ -68,12 +69,19 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 		});*/
 	},
 	onChangeSubRubric: function(oldValue, newValue, eOpts) {
-
+		this.getComboMainRubricRef().getStore().getProxy()._extraParams = { };
+		//this.getComboMainRubricRef().getStore().rejectChanges();
+	},
+	loadMainRubric: function(field, eOpts){
+		this.getComboMainRubricRef().getStore().getProxy()._extraParams = { };
+		this.getComboMainRubricRef().getStore().reload();
 	},
 	loadSubRubric: function(eOpts) {
-		var rubricId = Ext.ComponentQuery.query('#combo-choose-mainRubric-id')[0].displayTplData[0].rubricId;
-		this.getComboSubRubricRef().getStore().getProxy()._extraParams = { rubricId: rubricId };
-		this.getComboSubRubricRef().getStore().load();
+		var mainRubricId = Ext.ComponentQuery.query('#combo-choose-mainRubric-id')[0].displayTplData[0].rubricId;
+		this.getComboSubRubricRef().getStore().getProxy()._extraParams = { mainRubricId: mainRubricId };
+		this.getComboSubRubricRef().getStore().reload();
+		//this.getComboSubRubricRef().getStore().rejectChanges();
+		//this.getComboSubRubricRef().getStore().load();
 	},
 	onChangeCityInNewCompany: function(oldValue, newValue, eOpts) {
 
