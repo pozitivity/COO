@@ -41,7 +41,7 @@ Ext.define('COO.controller.OrganizationList',{
 	onChangeCompany: function(view, record, item, index, e){
 		console.log(record.data);
 		var wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
-		//wrc.removeAll();
+		wrc.removeAll();
 		wrc.add(Ext.widget('infoCompanyPanel'));
 		this.getInfoCompanyFormRef().getForm().setValues(record.data);
 		this.getNameCompanyRef().getForm().setValues(record.data);

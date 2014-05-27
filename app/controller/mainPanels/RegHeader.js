@@ -100,7 +100,8 @@ Ext.define('COO.controller.mainPanels.RegHeader', {
     		url: '/SFO/rest/authentication/logout'
     	});
         Ext.util.Cookies.set('userId', 0);
-        COO.util.service.destroyContainer();
+        //COO.util.service.destroyContainer();
+        //debugger;
         COO.util.service.initApp();
     },
     setPressedToolbarButton: function(button) {

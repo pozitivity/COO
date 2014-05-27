@@ -25,9 +25,9 @@ Ext.define('COO.view.rubricList.RubricListController',{
 	
 	onButtonBack:function(button, e, options){
 		if(Ext.ComponentQuery.query('#info-company-id')[0].destroy() != undefined){
-			Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
 			Ext.ComponentQuery.query('#info-company-id')[0].destroy();
 		}
+		Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
 		this.getView().getStore().load();
 	}
 });

@@ -51,6 +51,7 @@ Ext.define('COO.util.service',{
                         dialog.close();
                     }
                     Ext.util.Cookies.set("isAuth", 1);
+                    //debugger;
                     this.setFieldUserId(login);
                 },
                 scope: this
@@ -111,7 +112,8 @@ Ext.define('COO.util.service',{
                     success: function(conn, response){
                         console.log(Ext.decode(conn.responseText));
                         Ext.util.Cookies.set('userId', Ext.decode(conn.responseText).userId);
-                        this.destroyContainer();
+                        //this.destroyContainer();
+                        //debugger;
                         this.initRegApp();
                     },
                     failure: function(){
@@ -138,9 +140,10 @@ Ext.define('COO.util.service',{
                     remove: true,
                     listeners: {
                         afteranimate: function(el, startTime, eOpts) {
-                            Ext.create('COO.view.Container');
+                            //Ext.create('COO.view.Container');
+                            //debugger;
                             var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
-                            //wrc.removeAll();
+                            wrc.removeAll();
                             wrc.add(Ext.widget('headerpanel'));
                             //wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
                             //wrc.removeAll();
@@ -169,6 +172,7 @@ Ext.define('COO.util.service',{
             task.delay(1000);
         },
         destroyContainer: function() {
+           // debugger;
             var container = Ext.ComponentQuery.query('#main-container-id')[0];
             container.destroy();
         },
@@ -189,9 +193,11 @@ Ext.define('COO.util.service',{
                     remove: true,
                     listeners: {
                         afteranimate: function(el, startTime, eOpts) {
-                            Ext.create('COO.view.Container');
+                            //debugger;
+                            //Ext.create('COO.view.Container');
+                            //debugger;
                             var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
-                            //wrc.removeAll();
+                            wrc.removeAll();
                             wrc.add(Ext.widget('regHeader'));
                             //wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
                             //wrc.removeAll();

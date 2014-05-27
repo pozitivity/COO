@@ -60,6 +60,7 @@ Ext.define('COO.Application', {
 
 
         if (isAuth === undefined || isAuth == 'null' || isAuth == null || isAuth.length <= 0 || isAuth != 1) {
+            
             COO.util.service.initApp();
             Ext.widget('welcomePanel');
         } else {
