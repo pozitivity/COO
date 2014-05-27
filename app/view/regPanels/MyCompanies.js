@@ -7,8 +7,7 @@ Ext.define('COO.view.regPanels.MyCompanies',{
 	],
 	layout: {
 		type: 'vbox',
-		align: 'stretch',
-		//pack: 'center'
+		align: 'stretch'
 	},
 
 	items: [
@@ -45,7 +44,6 @@ Ext.define('COO.view.regPanels.MyCompanies',{
 				{
 					xtype: 'actioncolumn',
 					itemId: 'action-column-edit-company-id',
-					//flex: 1,
 					align: 'center',
 					items: [
 						{
@@ -57,7 +55,6 @@ Ext.define('COO.view.regPanels.MyCompanies',{
 				},
 				{
 					xtype: 'actioncolumn',
-					//flex: 1,
 					itemId: 'action-column-delete-company-id',
 					align: 'center',
 					items: [

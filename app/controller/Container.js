@@ -12,16 +12,5 @@ Ext.define('COO.controller.Container', {
 	
 	init:function(){
 		console.log('[OK] Init controller Container');
-		//this.setActiveCenterRegion('welcomePanel');
-		this.control({
-            '#header-panel-id': {
-            	beforerender: this.setHeader
-            }
-		});
-	},
-	setHeader: function(){
-		var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
-		wrc.removeAll();
-		wrc.add(Ext.widget('headerpanel'));
 	}
 });

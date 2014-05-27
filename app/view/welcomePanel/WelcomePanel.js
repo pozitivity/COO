@@ -18,7 +18,7 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 	width: 1000,
 	autoShow: true,
 	
-	margin: '0 100 0 0',
+	//margin: '0 100 0 0',
 	
 	items: [
 		{
@@ -32,7 +32,7 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 			items: [
 				{
 					html: '<div style = "font-size: 40px;margin-top: 20px;text-align: center;">Добро пожаловать!</div>',
-					height: 100
+					height: 120
 				}
 			]
 		},
@@ -47,17 +47,17 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 			},
 			items: [
 				{
-					html: '<div style="text-align: center;">Здесь будет представлена небольшая инструкция по пользованию системой</div>'
+					height: 100,
+					html: '<div style="text-align: center;font-size: 20px;">Здесь будет представлена небольшая инструкция по пользованию системой</div>'
 				},
 				{
-					html: '<div style="text-align: center;">Для начала выберите город:</div>'
+					html: '<div style="text-align: center;font-size: 18px;">Для начала выберите город:</div>'
 				},
 				{
 					xtype: 'combo',
             		displayField: 'cityName',
             		store: 'CityStore',
-            		//fieldLabel: 'Выберите ваш город',
-            		//style: 'margin-top: 50px; margin-left: 50px;',
+            		margin: '20 40 20 40',
             		itemId: 'combo-choose-city-id'
 				}
 			]
@@ -65,42 +65,67 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 		{
 			xtype: 'panel',
 			region: 'south',
+			//padding: 20,
+			//margin: 20,
+			//margin: '100 0 0 0',
 			layout: {
-				type: 'hbox',
+				type: 'vbox',
 				align: 'middle',
 				pack: 'center'
 			},
 			items: [
 				{
+					html: '<div style = "font-size: 16px; margin-bottom: 30px;">Нажмите ОК, чтобы перейти к системе</div>'
+				},
+				{
 					xtype: 'button',
 					text: 'Ok',
 					itemId: 'close-welcome-panel-id',
 					scale: 'small',
-					disabled: true
+					disabled: true,
+					style: 'margin-bottom: 30px;'
 				}
 			]
 		},
 		{
 			region: 'west',
-			padding: 20,
-			flex: 1,
+			//padding: 20,
+			//margin: 20,
+			flex: 2,
 			xtype: 'panel',
 			layout: 'hbox',
 			items: [
 				{
 					flex: 1,
-					html: '<--'
+					html: '<div id = "arrow_left"></div>'
 				},
 				{
 					flex: 2,
-					html: 'расположена таблица с рубриками, по которым фильтруются организации'
+					html: 'Здесь находится таблица с рубриками, по которым фильтруются организации',
+					style: 'margin-top: 90px; margin-left:10px;'
 				}
 			]
 		},
 		{
 			region: 'east',
-			flex: 1,
-			padding: 20
+			flex: 2,
+			//padding: 20,
+			//margin: 20,
+			xtype: 'panel',
+			layout: 'vbox',
+			items: [
+				{
+					flex: 4,
+					html: '<div id = "arrow_alias"></div>'
+				},
+				{
+					flex: 7,
+					width: 170,
+					html: '<div>В верхнем правом углу вы всегда можете поменять город</div><br/>'+
+					'<div>Вы можете зарегистрироваться в нашей системе и получить возможность разместить компанию</div>',
+					//style: 'margin-top: 90px; margin-right: 10px;'
+				}
+			]
 		}
 	]
 });

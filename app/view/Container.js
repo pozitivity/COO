@@ -15,6 +15,8 @@ Ext.define('COO.view.Container', {
 		'COO.view.regPanels.RegHeader'
 	],
 	
+    itemId: 'main-container-id',
+
     layout: {
         type: 'vbox'
     },
@@ -23,9 +25,7 @@ Ext.define('COO.view.Container', {
     autoScroll: true,
     items: [
         {
-			//flex: 1,
 			height: 130,
-            //xtype: 'headerpanel',
             itemId: 'header-panel-id'
         },
         {
@@ -34,14 +34,12 @@ Ext.define('COO.view.Container', {
         },
         {
         	flex: 0.5,
-        	//xtype: 'footerpanel'
         	xtype: 'panel',
         	layout: {
         		type: 'vbox',
         		align: 'center',
         		pack: 'center'
         	},
-        	//margin: '0 0 0 500',
         	items: [
         		{
         			xtype: 'footerpanel'

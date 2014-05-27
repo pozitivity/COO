@@ -9,6 +9,26 @@
 .rubricgrid .x-panel-header-default, .x-panel-header-default .x-tool-img{
 	background-color: white !important;
 }
+#arrow_left{
+    background-image:url('../icons/arrow_left.png');
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-top: 120px;
+    margin-left: 20px;
+    padding: 0px;
+    margin-right: 10px;
+}
+#arrow_alias{
+    background-image:url('../icons/arrow_right_up.png');
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-top: 30px;
+    margin-left: 60px;
+    padding: 0px;
+    margin-bottom: 10px;
+}
 #logo{
 	background-image:url('../icons/logo.png');
 	background-repeat: no-repeat;
@@ -80,4 +100,8 @@
     width: 27px !important;
     height: 27px !important;
     text-align: center !important;
+}
+.combo_choose_city{
+    outline: none !important;
+    border: none !important;
 }

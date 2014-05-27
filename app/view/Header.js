@@ -17,36 +17,47 @@ Ext.define("COO.view.Header", {
 			html: '<div id = "logo"></div>'
 		},
 		{
-			xtype: 'combo',
-            displayField: 'cityName',
-            store: 'CityStore',
-            fieldLabel: 'Город',
-            style: 'margin-top: 50px; margin-left: 20px;',
-            itemId: 'header-combo-choose-city-id'
-		},
-		{
 			xtype: 'panel',
-			minWidth: 750,
 			layout: {
-				type: 'hbox',
-				padding: '5px',
-				pack: 'end',
-				align: 'middle'
+				type: 'vbox',
+				align: 'right'
 			},
 			items: [
 				{
-					margin: '30 0 0 0',
-					xtype: 'button',
-					text: 'Войти',
-					itemId: 'login-open-id',
-					cls: 'toolbar'
+					xtype: 'panel',
+					minWidth: 1100,
+					layout: {
+						type: 'hbox',
+						padding: '5px',
+						pack: 'end',
+						align: 'middle'
+					},
+					items: [
+						{
+							margin: '20 0 0 100',
+							xtype: 'button',
+							text: 'Войти',
+							itemId: 'login-open-id',
+							cls: 'toolbar'
+						},
+						{
+							margin: '20 0 0 100',
+							xtype: 'button',
+							text: 'Регистрация',
+							itemId: 'registration-open-id',
+							cls: 'toolbar'
+						}
+					]
 				},
 				{
-					margin: '30 0 0 50',
-					xtype: 'button',
-					text: 'Регистрация',
-					itemId: 'registration-open-id',
-					cls: 'toolbar'
+					xtype: 'combo',
+            		displayField: 'cityName',
+            		store: 'CityStore',
+            		fieldLabel: 'Город',
+            		style: 'margin-top: 10px; margin-left: 20px;',
+            		itemId: 'header-combo-choose-city-id',
+            		width: 300,
+            		cls: 'combo_choose_city'
 				}
 			]
 		}

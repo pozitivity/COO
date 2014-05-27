@@ -100,6 +100,7 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 		values.logoId = 9;
 		console.log(Ext.ComponentQuery.query('#upload-logo-form-id')[0].getForm().getValues());
 		var info = this.getNewCompanyFormRef().getForm().getValues().info;
+		values.infoId = 15;
 		console.log(info);
 		Ext.Ajax.request({
 			url: '/SFO/rest/info/newInfo',
@@ -109,8 +110,8 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 			},
 			success: function(conn, response) {
 				//values.infoId = 8;
-				values.infoId = Ext.decode(conn.responseText).infoId;
-				console.log(values.infoId);
+				//values.infoId = Ext.decode(conn.responseText).infoId;
+				//console.log(values.infoId);
 			}
 		});
 		

@@ -26,15 +26,16 @@ Ext.define('COO.controller.WelcomePanel',{
 		var wrc = Ext.ComponentQuery.query('#welcome-panel-id')[0];
 		wrc.removeAll();
 		wrc.close();
-		//Ext.create('COO.view.Container');
 	},
 	onCityChange: function(oldValue, newValue, eOpts){
 		console.log(Ext.ComponentQuery.query('#combo-choose-city-id')[0].displayTplData[0]);
-		Ext.ComponentQuery.query('#field-cityId')[0].getForm().setValues(Ext.ComponentQuery.query('#combo-choose-city-id')[0].displayTplData[0]);
-		Ext.util.Cookies.set('cityId', Ext.ComponentQuery.query('#combo-choose-city-id')[0].displayTplData[0].cityId);
 		Ext.ComponentQuery.query('#close-welcome-panel-id')[0].setDisabled(false);
-		//console.log(Ext.ComponentQuery.query('#field-cityId')[0].getForm().getValues());
-		//var cityId = Ext.ComponentQuery.query('#field-cityId')[0].getForm().getValues().cityId;
+		this.setComboCityfield();
+	},
+
+	setComboCityfield: function() {
+		Ext.util.Cookies.set('cityId', Ext.ComponentQuery.query('#combo-choose-city-id')[0].displayTplData[0].cityId);
+		var cityId = Ext.util.Cookies.get('cityId');
 		Ext.Ajax.request({
 			url: '/SFO/rest/city/city',
 			method: 'GET',

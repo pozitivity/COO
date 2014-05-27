@@ -69,6 +69,7 @@ Ext.define('COO.controller.mainPanels.RegHeader', {
     }, 
     onButtonMyCompaniesClick: function(button, e, options) {
     	console.log('button my companies was clicked');
+        this.setPressedToolbarButton(button);
         //console.log(Ext.ComponentQuery.query('#field-back-rubricId')[0].getForm().getValues().mainRubricId);
         if(Ext.ComponentQuery.query('#info-company-id')[0] != undefined){
             Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
@@ -77,15 +78,12 @@ Ext.define('COO.controller.mainPanels.RegHeader', {
         }
         Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
         var wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
-        wrc.removeAll();
+        //wrc.removeAll();
         wrc.add(Ext.widget('myCompaniesPanel'));
         //userId = Ext.ComponentQuery.query('#field-userId')[0].getForm().getValues();
         userId = Ext.util.Cookies.get('userId');
         console.log(userId);
         this.loadMyCompanies(userId);
-
-        this.setPressedToolbarButton(button);
-
     },
     loadMyCompanies: function(userId){
         this.getMyOrganizationGridPanelRef().getStore().load({
@@ -96,13 +94,14 @@ Ext.define('COO.controller.mainPanels.RegHeader', {
     },
     onButtonLogoutClick: function(button, e, options){
     	console.log('button logout was clicked');
+        this.setPressedToolbarButton(button);
     	Ext.Ajax.request({
     		method: 'POST',
     		url: '/SFO/rest/authentication/logout'
     	});
         Ext.util.Cookies.set('userId', 0);
+        COO.util.service.destroyContainer();
         COO.util.service.initApp();
-        this.setPressedToolbarButton(button);
     },
     setPressedToolbarButton: function(button) {
         var pressed_classname = "pressed-button";

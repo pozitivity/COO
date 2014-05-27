@@ -3,13 +3,32 @@
 .x-grid-cell-inner  {
     line-height: 25px !important;
 }
-.x-grid-with-row-lines .x-grid-item{
+.rubricgrid .x-grid-with-row-lines .x-grid-item{
 	border: none !important;
 }
-.x-panel-header-default, .x-panel-header-default .x-tool-img{
+.rubricgrid .x-panel-header-default, .x-panel-header-default .x-tool-img{
 	background-color: white !important;
 }
-
+#arrow_left{
+    background-image:url('../icons/arrow_left.png');
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-top: 120px;
+    margin-left: 20px;
+    padding: 0px;
+    margin-right: 10px;
+}
+#arrow_alias{
+    background-image:url('../icons/arrow_right_up.png');
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin-top: 30px;
+    margin-left: 60px;
+    padding: 0px;
+    margin-bottom: 10px;
+}
 #logo{
 	background-image:url('../icons/logo.png');
 	background-repeat: no-repeat;
@@ -20,8 +39,8 @@
     padding: 0px;
 }
 .x-mask {
-    opacity: .9 !important;
-    background: rgb(255, 255, 255) !important;
+    opacity: .95 !important;
+    background: #ffffff !important;
 }
 .x-mask.splashscreen {
     background-color: white;
@@ -29,10 +48,60 @@
 }
 .x-mask-msg.splashscreen,
 .x-mask-msg.splashscreen div {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: normal;
    /*padding: 30px 5px 5px 5px;*/
     border: none;
     background-color: transparent;
     background-position: top center;
+}
+.x-btn.toolbar .x-btn-inner{
+    outline: none !important;
+    border: none !important;
+    background: none !important;
+    background-color: rgb(255,255,255) !important;
+    color: black;
+    background-color: rgb(255,255,255) !important;
+    font-size: 20px !important;
+}
+.x-btn.x-btn-over .toolbar {
+    color: red !important;
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+    background-color: rgb(255,255,255) !important;
+}
+.x-btn.x-btn-focus .toolbar {
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+}
+
+.x-btn.toolbar.pressed-button .x-btn-inner {
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+    color: #157fcc !important;
+}
+.x-btn-default-small.toolbar{
+    outline: none !important;
+    background: none !important;
+    border: none !important;
+    font-size: 20px !important;
+}
+.companyName .x-form-display-field{
+    font-size: 24px !important;
+}
+.infoAboutCompany .x-form-textarea{
+    border-radius: 5px !important;
+    font-size: 15px !important;
+}
+.size_icon{
+    width: 27px !important;
+    height: 27px !important;
+    text-align: center !important;
+}
+.combo_choose_city{
+    outline: none !important;
+    border: none !important;
 }

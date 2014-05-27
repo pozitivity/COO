@@ -38,8 +38,8 @@ Ext.define('COO.util.service',{
                     password: password
                 }, 
                 failure: function(){
-                Ext.util.Cookies.set("isAuth", 0);
-                Ext.Msg.show({
+                    Ext.util.Cookies.set("isAuth", 0);
+                    Ext.Msg.show({
                         title: 'Ошибка',
                         msg: 'Неверный логин или пароль',
                         icon: Ext.Msg.ERROR,
@@ -111,6 +111,7 @@ Ext.define('COO.util.service',{
                     success: function(conn, response){
                         console.log(Ext.decode(conn.responseText));
                         Ext.util.Cookies.set('userId', Ext.decode(conn.responseText).userId);
+                        this.destroyContainer();
                         this.initRegApp();
                     },
                     failure: function(){
@@ -121,7 +122,6 @@ Ext.define('COO.util.service',{
         },
 
         initApp: function() {
-            Ext.create('COO.view.Container');
             splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
             splashscreen.addCls('splashscreen');
             Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
@@ -140,34 +140,38 @@ Ext.define('COO.util.service',{
                         afteranimate: function(el, startTime, eOpts) {
                             Ext.create('COO.view.Container');
                             var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
-                            wrc.removeAll();
+                            //wrc.removeAll();
                             wrc.add(Ext.widget('headerpanel'));
-                            wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
-                            wrc.removeAll();
-                            Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
+                            //wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
+                            //wrc.removeAll();
+                            //Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
 
-                            var cityId = Ext.ComponentQuery.query('#field-cityId')[0].getForm().getValues().cityId;
-                            if(cityId === null || cityId === ''){
+                            var cityId = Ext.util.Cookies.get('cityId');
+                            if(cityId != null || cityId != '' || cityId != undefined) {
                                 cityId = Ext.util.Cookies.get('cityId');
+                            
+                                Ext.Ajax.request({
+                                    url: '/SFO/rest/city/city',
+                                    method: 'GET',
+                                    params: {
+                                    cityId: cityId
+                                    },
+                                    success: function(conn, response){
+                                        var cityName = Ext.decode(conn.responseText).cityName;
+                                        Ext.ComponentQuery.query('#header-combo-choose-city-id')[0].setValue(cityName);
+                                    }
+                                });
                             }
-                            Ext.Ajax.request({
-                                url: '/SFO/rest/city/city',
-                                method: 'GET',
-                                params: {
-                                cityId: cityId
-                            },
-                            success: function(conn, response){
-                                var cityName = Ext.decode(conn.responseText).cityName;
-                                Ext.ComponentQuery.query('#header-combo-choose-city-id')[0].setValue(cityName);
-                            }
-                        });
+                        }
                     }
-                }
+                });
             });
-        });
-        task.delay(1000);
+            task.delay(1000);
         },
-
+        destroyContainer: function() {
+            var container = Ext.ComponentQuery.query('#main-container-id')[0];
+            container.destroy();
+        },
         initRegApp: function() {
             splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
             splashscreen.addCls('splashscreen');
@@ -187,31 +191,35 @@ Ext.define('COO.util.service',{
                         afteranimate: function(el, startTime, eOpts) {
                             Ext.create('COO.view.Container');
                             var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
-                            wrc.removeAll();
+                            //wrc.removeAll();
                             wrc.add(Ext.widget('regHeader'));
-                            wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
-                            wrc.removeAll();
-                            Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
-                        //var cityId = Ext.ComponentQuery.query('#field-cityId')[0].getForm().getValues().cityId;
-                        //if(cityId === null || cityId === undefined || cityId === ''){
+                            //wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
+                            //wrc.removeAll();
+                            //Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
+                        
                             cityId = Ext.util.Cookies.get("cityId");
-                        //}
-                            Ext.Ajax.request({
-                                url: '/SFO/rest/city/city',
-                                method: 'GET',
-                                params: {
-                                    cityId: cityId
-                                },
-                                success: function(conn, response){
-                                    var cityName = Ext.decode(conn.responseText).cityName;
-                                    Ext.ComponentQuery.query('#regheader-combo-choose-city-id')[0].setValue(cityName);
-                                }
-                            });
+                            if(cityId != null || cityId != '' || cityId != undefined) {
+                                Ext.Ajax.request({
+                                    url: '/SFO/rest/city/city',
+                                    method: 'GET',
+                                    params: {
+                                        cityId: cityId
+                                    },
+                                    success: function(conn, response){
+                                        var cityName = Ext.decode(conn.responseText).cityName;
+                                        Ext.ComponentQuery.query('#regheader-combo-choose-city-id')[0].setValue(cityName);
+                                    }
+                                });
+                            }
                         }
                     }
                 });
             });
             task.delay(1000);
+        },
+
+        initAdminApp: function() {
+
         }
 	}
 });

@@ -1287,13 +1287,16 @@ Ext.ClassManager.addNameAlternateMappings({
   "COO.controller.Registration": [],
   "COO.controller.RubricList": [],
   "COO.controller.WelcomePanel": [],
+  "COO.controller.mainPanels.MyCompanies": [],
   "COO.controller.mainPanels.RegHeader": [],
   "COO.model.City": [],
   "COO.model.Organization": [],
   "COO.model.Rubric": [],
   "COO.store.CityStore": [],
+  "COO.store.MyOrganizationStore": [],
   "COO.store.OrganizationStore": [],
   "COO.store.RubricStore": [],
+  "COO.util.service": [],
   "COO.view.Container": [],
   "COO.view.Footer": [],
   "COO.view.Header": [],
@@ -1301,6 +1304,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "COO.view.infoCompany.InfoCompany": [],
   "COO.view.login.Login": [],
   "COO.view.organizationList.OrganizationList": [],
+  "COO.view.regPanels.MyCompanies": [],
+  "COO.view.regPanels.NewCompany": [],
   "COO.view.regPanels.RegHeader": [],
   "COO.view.registration.RegistrationForm": [],
   "COO.view.rubricList.RubricList": [],
@@ -2349,6 +2354,7 @@ Ext.ClassManager.addNameAliasMappings({
   "COO.controller.Registration": [],
   "COO.controller.RubricList": [],
   "COO.controller.WelcomePanel": [],
+  "COO.controller.mainPanels.MyCompanies": [],
   "COO.controller.mainPanels.RegHeader": [],
   "COO.model.City": [],
   "COO.model.Organization": [],
@@ -2356,12 +2362,16 @@ Ext.ClassManager.addNameAliasMappings({
   "COO.store.CityStore": [
     "store.cities"
   ],
+  "COO.store.MyOrganizationStore": [
+    "store.myOrganizations"
+  ],
   "COO.store.OrganizationStore": [
     "store.organizations"
   ],
   "COO.store.RubricStore": [
     "store.rubrics"
   ],
+  "COO.util.service": [],
   "COO.view.Container": [],
   "COO.view.Footer": [
     "widget.footerpanel"
@@ -2380,6 +2390,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "COO.view.organizationList.OrganizationList": [
     "widget.organizationList"
+  ],
+  "COO.view.regPanels.MyCompanies": [
+    "widget.myCompaniesPanel"
+  ],
+  "COO.view.regPanels.NewCompany": [
+    "widget.newCompany"
   ],
   "COO.view.regPanels.RegHeader": [
     "widget.regHeader"
