@@ -43,28 +43,11 @@ Ext.define('COO.controller.OrganizationList',{
 		var wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
 		wrc.removeAll();
 		wrc.add(Ext.widget('infoCompanyPanel'));
-		//this.getInfoCompanyPanelRef().show();
 		this.getInfoCompanyFormRef().getForm().setValues(record.data);
 		this.getNameCompanyRef().getForm().setValues(record.data);
-		if(record.data.info.info != null){
+		if(record.data.info != null){
 			this.getAddInfoCompanyHtmlRef().update(record.data.info.info);
 		}
 		this.getLogoCompanyRef().setSrc('/SFO/rest/logo/byId?logoId='+record.data.logo.logoId);
-
-		/*Ext.Ajax.request({
-			method: 'GET',
-			params: {
-				logoId: record.data.logo.logoId
-			},
-			url: '/SFO/rest/logo/findById',
-			success: function(conn, response){
-				console.log(Ext.decode(conn.responseText));
-				this.getLogoCompanyRef().setSrc(Ext.decode(conn.responseText).logo);
-			},
-			failure: function(){
-
-			},
-			scope: this
-		});*/
 	}
 });

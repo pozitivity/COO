@@ -9,7 +9,7 @@ Ext.define("COO.view.Footer", {
 	minWidth:1300,
 	items: [
 		{
-			html: '<div>© 2014 COO, Tatyana Gorbunova and Elina Komaleva,  Contacts: tatiana.gorbunova@outlook.com</div>'
+			html: '<div>© 2014 COO, Tatyana Gorbunova and Elina Komaleva,  Contacts: coo.adm.tgek@gmail.com</div>'
 		}
 	]
 

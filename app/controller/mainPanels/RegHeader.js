@@ -20,6 +20,22 @@ Ext.define('COO.controller.mainPanels.RegHeader', {
         {
             ref: 'rubricListGridPanelRef',
             selector: '#rubric-list-gridpanel'
+        },
+        {
+            ref: 'buttonProfileRef',
+            selector: 'button#profile-id'
+        },
+        {
+            ref: 'buttonMyCompaniesRef',
+            selector: 'button#my-companies-id'
+        },
+        {
+            ref: 'buttonLogoutRef',
+            selector: 'button#button-logout-id'
+        },
+        {
+            ref: 'regHeaderComboChooseCityRef',
+            selector: '#regheader-combo-choose-city-id'
         }
     ],
     splashscreen: {},
@@ -44,17 +60,18 @@ Ext.define('COO.controller.mainPanels.RegHeader', {
     },
     onButtonProfileClick: function(button, e, options) {
     	console.log('button profile was clicked');
-        Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
-        Ext.ComponentQuery.query('#info-company-id')[0].hide();
-        this.getRubricListGridPanelRef().getStore().load();
+        if(Ext.ComponentQuery.query('#info-company-id')[0] != undefined){
+            Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
+            Ext.ComponentQuery.query('#info-company-id')[0].destroy();
+            this.getRubricListGridPanelRef().getStore().load();
+        }
         this.setPressedToolbarButton(button);
     }, 
     onButtonMyCompaniesClick: function(button, e, options) {
     	console.log('button my companies was clicked');
         //console.log(Ext.ComponentQuery.query('#field-back-rubricId')[0].getForm().getValues().mainRubricId);
-        if(Ext.ComponentQuery.query('#info-companu-id')[0] != undefined){
+        if(Ext.ComponentQuery.query('#info-company-id')[0] != undefined){
             Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
-            console.log(Ext.ComponentQuery.query('#info-company-id')[0]);
             Ext.ComponentQuery.query('#info-company-id')[0].destroy();
             this.getRubricListGridPanelRef().getStore().load();
         }
@@ -62,7 +79,8 @@ Ext.define('COO.controller.mainPanels.RegHeader', {
         var wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
         wrc.removeAll();
         wrc.add(Ext.widget('myCompaniesPanel'));
-        userId = Ext.ComponentQuery.query('#field-userId')[0].getForm().getValues();
+        //userId = Ext.ComponentQuery.query('#field-userId')[0].getForm().getValues();
+        userId = Ext.util.Cookies.get('userId');
         console.log(userId);
         this.loadMyCompanies(userId);
 
@@ -82,59 +100,35 @@ Ext.define('COO.controller.mainPanels.RegHeader', {
     		method: 'POST',
     		url: '/SFO/rest/authentication/logout'
     	});
-    	splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
-        splashscreen.addCls('splashscreen');
-        Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
-            cls: 'x-splash-icon'
-        });
-    	var task = new Ext.util.DelayedTask(function() {
-            splashscreen.fadeOut({
-                duration: 500,
-                remove: true
-            });
-                
-            splashscreen.next().fadeOut({
-                duration: 500,
-                remove: true,
-                listeners: {
-                    afteranimate: function(el, startTime, eOpts) {
-                        var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
-        				wrc.removeAll();
-        				wrc.add(Ext.widget('headerpanel'));
-                        wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
-                        wrc.removeAll();
-                        Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
-
-                        var cityId = Ext.ComponentQuery.query('#field-cityId')[0].getForm().getValues().cityId;
-                        Ext.Ajax.request({
-                            url: '/SFO/rest/city/city',
-                            method: 'GET',
-                            params: {
-                                cityId: cityId
-                            },
-                            success: function(conn, response){
-                                var cityName = Ext.decode(conn.responseText).cityName;
-                                Ext.ComponentQuery.query('#header-combo-choose-city-id')[0].setValue(cityName);
-                            }
-                        });
-                    }
-                }
-            });
-        });
-        task.delay(1000);
-
+        Ext.util.Cookies.set('userId', 0);
+        COO.util.service.initApp();
         this.setPressedToolbarButton(button);
     },
     setPressedToolbarButton: function(button) {
         var pressed_classname = "pressed-button";
-        //this.getButtonConfigurationRef().removeCls(pressed_classname);
-        //this.getButtonFinancialsRef().removeCls(pressed_classname);
-        //this.getButtonManageAccountRef().removeCls(pressed_classname);
+        this.getButtonMyCompaniesRef().removeCls(pressed_classname);
+        this.getButtonProfileRef().removeCls(pressed_classname);
+        this.getButtonLogoutRef().removeCls(pressed_classname);
         button.addCls(pressed_classname);
     },
     onChangeCityInRegHeader: function(oldValue, newValue, eOpts){
-        Ext.ComponentQuery.query('#field-cityId')[0].getForm().setValues(Ext.ComponentQuery.query('#regheader-combo-choose-city-id')[0].displayTplData[0]);
-        console.log(Ext.ComponentQuery.query('#field-cityId')[0].getForm().getValues());
+        var cityId = Ext.ComponentQuery.query('#regheader-combo-choose-city-id')[0].displayTplData[0].cityId;
+        if(cityId === null || cityId === undefined || cityId === '') {
+            cityId = Ext.util.Cookies.get('cityId');
+            Ext.Ajax.request({
+                url: '/SFO/rest/city/city',
+                method: 'GET',
+                params: {
+                    cityId: cityId
+                },
+                success: function(conn, response){
+                    var cityName = Ext.decode(conn.responseText).cityName;
+                    this.getRegHeaderComboChooseCityRef().setValue(cityName, true);
+                },
+                scope: this
+            });
+        }
+        Ext.util.Cookies.set('cityId', cityId);
         var wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
         wrc.removeAll();
         Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();

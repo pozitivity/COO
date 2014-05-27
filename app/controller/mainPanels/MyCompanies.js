@@ -14,15 +14,23 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 		{
 			ref: 'comboSubRubricRef',
 			selector: '#combo-choose-subRubric-id'
+		},
+		{
+			ref: 'comboCityRef',
+			selector: '#new-company-combo-choose-city-id'
+		},
+		{
+			ref: 'newCompanyFormRef',
+			selector: '#create-company-form-id'
 		}
 	],
 	init: function(application){
 		console.log('[OK] Init MyCompanies controller');
 		this.control({
-			"actioncolumn#action-column-edit-company-id[action=edit]": {
+			"actioncolumn#action-column-edit-company-id": {
 				click: this.onIconEditClick
 			},
-			"actioncolumn#action-column-delete-company-id[action=delete]": {
+			"actioncolumn#action-column-delete-company-id": {
 				click: this.onIconDeleteClick
 			},
 			"button#button-add-new-company-id": {
@@ -60,17 +68,11 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 	},
 	onChangeMainRubric: function(oldValue, newValue, eOpts) {
 		this.getComboSubRubricRef().setDisabled(false);
+		this.getComboSubRubricRef().setValue('',true);
 		this.loadSubRubric();
-		/*var rubricId = Ext.ComponentQuery.query('#combo-choose-mainRubric-id')[0].displayTplData[0].rubricId;
-		this.getComboSubRubricRef().getStore().load({
-			params: {
-				rubricId: rubricId
-			}
-		});*/
 	},
 	onChangeSubRubric: function(oldValue, newValue, eOpts) {
 		this.getComboMainRubricRef().getStore().getProxy()._extraParams = { };
-		//this.getComboMainRubricRef().getStore().rejectChanges();
 	},
 	loadMainRubric: function(field, eOpts){
 		this.getComboMainRubricRef().getStore().getProxy()._extraParams = { };
@@ -80,14 +82,54 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 		var mainRubricId = Ext.ComponentQuery.query('#combo-choose-mainRubric-id')[0].displayTplData[0].rubricId;
 		this.getComboSubRubricRef().getStore().getProxy()._extraParams = { mainRubricId: mainRubricId };
 		this.getComboSubRubricRef().getStore().reload();
-		//this.getComboSubRubricRef().getStore().rejectChanges();
-		//this.getComboSubRubricRef().getStore().load();
 	},
 	onChangeCityInNewCompany: function(oldValue, newValue, eOpts) {
 
 	},
 	onButtonSaveNewCompanyClick: function(button, e, options) {
-		console.log('button save new company was clicked');
+		console.log('Button save new company was clicked');
+		values = {}
+		values.address = this.getNewCompanyFormRef().getForm().getValues().address;
+		values.website = this.getNewCompanyFormRef().getForm().getValues().website;
+		values.postcode = this.getNewCompanyFormRef().getForm().getValues().postcode;
+		values.phone = this.getNewCompanyFormRef().getForm().getValues().phone;
+		values.name = this.getNewCompanyFormRef().getForm().getValues().name;
+		values.rubricId = this.getComboSubRubricRef().displayTplData[0].rubricId;
+		values.cityId = this.getComboCityRef().displayTplData[0].cityId;
+		values.userId = Ext.util.Cookies.get('userId');
+		values.logoId = 9;
+		console.log(Ext.ComponentQuery.query('#upload-logo-form-id')[0].getForm().getValues());
+		var info = this.getNewCompanyFormRef().getForm().getValues().info;
+		console.log(info);
+		Ext.Ajax.request({
+			url: '/SFO/rest/info/newInfo',
+			method: 'POST',
+			params: {
+				info: info
+			},
+			success: function(conn, response) {
+				//values.infoId = 8;
+				values.infoId = Ext.decode(conn.responseText).infoId;
+				console.log(values.infoId);
+			}
+		});
+		
+		/*Ext.Ajax.request({
+			method: 'GET',
+			url: '/SFO/rest/logo/upload',
+			params: {
+				logo: 
+			},
+		});*/
+		console.log(values);
+		Ext.Ajax.request({
+			url: '/SFO/rest/organization/newOrganization',
+			method: 'POST',
+			params: values,
+			success: function(conn, response) {
+				console.log('Success upload organization');
+			}
+		});
 		var win = Ext.WindowManager.getActive();
 		if(win) { win.close(); }
 	}

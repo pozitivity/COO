@@ -53,8 +53,7 @@ Ext.define("COO.view.login.Login", {
 			},
 			{
 				xtype: 'button',
-				itemId: 'cancel',
-				iconCls: 'cancel',
+				itemId: 'cancel-login',
 				text: 'Отмена'
 			},
 			{

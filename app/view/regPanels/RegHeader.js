@@ -13,45 +13,64 @@ Ext.define('COO.view.regPanels.RegHeader',{
 		{
 			html: '<div id = "logo"></div>'
 		},
-		{
+		/*{
 			xtype: 'combo',
             displayField: 'cityName',
             store: 'CityStore',
             fieldLabel: 'Город',
             style: 'margin-top: 50px; margin-left: 20px;',
             itemId: 'regheader-combo-choose-city-id'
-		},
+		},*/
 		{
 			xtype: 'panel',
-			minWidth: 750,
 			layout: {
-				type: 'hbox',
-				padding: '5px',
-				pack: 'end',
-				align: 'middle'
+				type: 'vbox',
+				align: 'right'
 			},
 			items: [
-				{
-					xtype: 'button',
-					text: 'Мои компании',
-					margin: '30 0 0 50',
-					cls: 'toolbar',
-					itemId: 'my-companies-id'
+			{
+				xtype: 'panel',
+				minWidth: 1100,
+				layout: {
+					type: 'hbox',
+					padding: '5px',
+					pack: 'end',
+					align: 'middle'
 				},
-				{
-					xtype: 'button',
-					text: 'Профиль',
-					margin: '30 0 0 50',
-					cls: 'toolbar',
-					itemId: 'profile-id'
-				},
-				{
-					xtype: 'button',
-					text: 'Выйти',
-					margin: '30 0 0 50',
-					itemId: 'button-logout-id',
-					cls: 'toolbar'
-				}
+				items: [
+					{
+						xtype: 'button',
+						text: 'Мои компании',
+						margin: '20 0 0 100',
+						cls: 'toolbar',
+						itemId: 'my-companies-id'
+					},
+					{
+						xtype: 'button',
+						text: 'Профиль',
+						margin: '20 0 0 100',
+						cls: 'toolbar',
+						itemId: 'profile-id'
+					},
+					{
+						xtype: 'button',
+						text: 'Выйти',
+						margin: '20 0 0 100',
+						itemId: 'button-logout-id',
+						cls: 'toolbar'
+					}
+				]
+			},
+			{
+				xtype: 'combo',
+            	displayField: 'cityName',
+            	store: 'CityStore',
+            	fieldLabel: 'Город',
+            	width: 385,
+            	style: 'margin-top: 10px; margin-left: 20px;',
+            	itemId: 'regheader-combo-choose-city-id',
+            	cls: 'combo_choose_city'
+			}
 			]
 		}
 	]

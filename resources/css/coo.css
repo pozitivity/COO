@@ -9,7 +9,6 @@
 .rubricgrid .x-panel-header-default, .x-panel-header-default .x-tool-img{
 	background-color: white !important;
 }
-
 #logo{
 	background-image:url('../icons/logo.png');
 	background-repeat: no-repeat;
@@ -43,6 +42,7 @@
     background-color: rgb(255,255,255) !important;
     color: black;
     background-color: rgb(255,255,255) !important;
+    font-size: 20px !important;
 }
 .x-btn.x-btn-over .toolbar {
     color: red !important;

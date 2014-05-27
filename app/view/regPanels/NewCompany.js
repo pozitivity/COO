@@ -121,40 +121,39 @@ Ext.define('COO.view.regPanels.NewCompany',{
 					fieldLabel: 'Дополнительная информация',
 					labelWidth: 130
 				},
-				//{
-					/*xtype: 'filefield',
-        			name: 'logo',
-        			msgTarget: 'under',
-        			allowBlank: true,
-        			anchor: '60%',
-        			buttonText: 'Select Photo...'*/
-					/*xtype:'form',
-                    itemId:'logo-new-company-form-id',
-                    id:'logo-new-company-form',
-                    //padding: '10 10',
-                    items:[
-                    	{
-                            xtype:'filefield',
-                            itemId:'field-logo-new-company-form-id',
-                            name:'logo',
-                            //padding:'10, 15',
-                            //allowBlank:true,
-                            msgTarget:'side',
-                            anchor:'100%',
-                            //fileUpload:true,
-                            //emptyText: 'Логотип',
-                            buttonText:'Выбрать',
-                            //readOnly: true
-                        }
-                    ]*/
-				//},
-				//{
-					/*xtype:'image',
-					itemId:'upload-logo-new-company-id',
-                    height:150,
-                    width:150,*/
-                    //padding:'10, 150, 10, 150'
-				//},
+				{
+					xtype: 'form',
+					itemId: 'upload-logo-form-id',
+					items: [
+						{
+							xtype: 'filefield',
+        					name: 'logo',
+        					emptyText: 'Логотип',
+        					labelWidth: 50,
+        					msgTarget: 'qtip',
+        					allowBlank: true,
+        					anchor: '80%',
+        					buttonText: 'Выберите логотип ...'
+						}
+					],
+					buttons: [
+						{
+							text: 'Upload',
+							handler: function() {
+								var form = this.up('form').getForm();
+								if(form.isValid()) {
+									form.submit({
+										url: '/SFO/rest/logo/upload',
+										waitMsg: 'Ваш логотип загружается...',
+										success: function(fp, o) {
+											Ext.Msg.alert('Success', o.result.file);
+										}
+									});
+								}
+							}
+						}
+					]
+				},
 				{
 					xtype: 'panel',
 					layout: {

@@ -40,7 +40,6 @@ Ext.define('COO.Application', {
     
 
     init: function(){
-   debugger;
         COO.util.service.fillCookiesIsAuth();
         var isAuth = Ext.util.Cookies.get("isAuth");
 
@@ -61,29 +60,11 @@ Ext.define('COO.Application', {
 
 
         if (isAuth === undefined || isAuth == 'null' || isAuth == null || isAuth.length <= 0 || isAuth != 1) {
-            var task = new Ext.util.DelayedTask(function() {
-                splashscreen.fadeOut({
-                    duration: 500,
-                    remove: true
-                });
-                
-                splashscreen.next().fadeOut({
-                    duration: 500,
-                    remove: true,
-                    listeners: {
-                        afteranimate: function(el, startTime, eOpts) {
-                            //Ext.widget('welcomePanel');
-                            Ext.create('COO.view.Container');
-                            //Ext.widget('welcomePanel');
-                        }
-                    }
-                });
-            });
-        } else {
+            COO.util.service.initApp();
             Ext.widget('welcomePanel');
+        } else {
+            COO.util.service.initRegApp();
         }
-
-            task.delay(1000);
     },
 
 });

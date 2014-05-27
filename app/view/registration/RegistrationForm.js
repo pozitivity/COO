@@ -44,6 +44,11 @@ Ext.define("COO.view.registration.RegistrationForm", {
 			maxLength: 30
 		},
 		{
+			name: 'email',
+			fieldLabel: 'E-mail',
+			maxLength: 50
+		},
+		{
 			displayField: 'cityName',
 			xtype: 'combo',
 			store: 'CityStore',
@@ -60,8 +65,7 @@ Ext.define("COO.view.registration.RegistrationForm", {
 			},
 			{
 				xtype: 'button',
-				itemId: 'cancel',
-				iconCls: 'cancel',
+				itemId: 'cancel-registration',
 				text: 'Отмена'
 			},
 			{
