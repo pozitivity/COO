@@ -1,20 +1,15 @@
-Ext.define('COO.view.regPanels.MyCompanies',{
-	extend: 'Ext.panel.Panel',
-	alias: 'widget.myCompaniesPanel',
+Ext.define('COO.view.admPanel.adminPanel',{
+	extend: 'Ext..panel.Panel',
+	alias: 'widget.adminPanel',
 
-	requires: [
-		'Ext.grid.column.Action'
-	],
 	layout: {
 		type: 'vbox',
 		align: 'stretch'
 	},
 
-	autoScroll: true,
-	//height: 400, 
-
 	items: [
 		{
+			xtype: 'grid',
 			xtype: 'grid',
 			autoScroll: true,
 			width: 700,
@@ -36,24 +31,13 @@ Ext.define('COO.view.regPanels.MyCompanies',{
 					flex: 2
 				},
 				{
-					dataIndex: 'published',
-					flex: 2,
-					renderer: function(value){
-						if(value === 'true') {
-							return 'Опубликована'
-						} else {
-							return 'Не опубликована'
-						}
-					}
-				},
-				{
 					xtype: 'actioncolumn',
 					itemId: 'action-column-edit-company-id',
 					align: 'center',
 					items: [
 						{
 							icon: 'resources/icons/myCompanies/edit.png',
-							tooltip: 'Редактировать',
+							tooltip: 'Просмотр',
 							iconCls: 'size_icon',
 						}
 					]
@@ -69,22 +53,6 @@ Ext.define('COO.view.regPanels.MyCompanies',{
 							iconCls: 'size_icon',
 						}
 					]
-				}
-			]
-		},
-		{
-			xtype: 'panel',
-			layout: {
-				type: 'hbox',
-				pack: 'end',
-				align: 'middle'
-			},
-			items: [
-				{
-					xtype: 'button',
-					text: 'Добавить новую компанию',
-					itemId: 'button-add-new-company-id',
-					margin: '50 0 0 0'
 				}
 			]
 		}

@@ -98,6 +98,15 @@
 }
 .size_icon{
     width: 27px !important;
-    height: 27px !important;
+    height: 25px !important;
     text-align: center !important;
+}
+.logo_company{
+    border-radius: 5px !important;
+    width: 150px;
+    height: 150px;
+}
+.position{
+    margin-right:254px;
+    margin-left:254px;
 }

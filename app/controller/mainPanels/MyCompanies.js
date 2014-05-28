@@ -26,6 +26,14 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 		{
 			ref: 'imageUploadLogoRef',
 			selector: '#image-upload-logo-id'
+		},
+		{
+			ref: 'uploadLogoFormRef',
+			selector: '#upload-logo-form-id'
+		},
+		{
+			ref: 'myOrganizationListGridPanelRef',
+			selector: '#my-organization-list-gridpanel'
 		}
 	],
 	init: function(application){
@@ -129,27 +137,48 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 			success: function(conn, response) {
 				//values.infoId = 8;
 				values.infoId = Ext.Number.from(Ext.decode(conn.responseText).infoId, 8);
-				console.log(values.infoId);
+				//console.log(values.infoId);
 			}
 		});
 		
-		/*Ext.Ajax.request({
-			method: 'GET',
-			url: '/SFO/rest/logo/upload',
+		this.getUploadLogoFormRef().getForm().submit({
+			standartSubmit: false,
+            method:'POST',
+            url:'/SFO/rest/logo/upload',
+            headers:{
+                'Content-Type':'image/png',
+                'accept':'application/json'
+            },
+            waitMsg:'Данные о компании загружаются...',
+            success:function(conn, response, options, eOpts){
+
+            },
+            failure:function(conn, response, options, eOpts){
+                console.log(response.response.responseText);
+                values.logoId = Ext.decode(response.response.responseText).logoId;
+
+                console.log(values);
+				Ext.Ajax.request({
+					url: '/SFO/rest/organization/newOrganization',
+					method: 'POST',
+					params: values,
+					success: function(conn, response) {
+						console.log('Success upload organization');
+						this.updateMyCompaniesList()
+					},
+					scope: this
+				});
+				var win = Ext.WindowManager.getActive();
+				if(win) { win.close(); }
+            },
+            scope: this
+        });
+	},
+	updateMyCompaniesList: function() {
+		this.getMyOrganizationListGridPanelRef().getStore().load({
 			params: {
-				logo: 
-			},
-		});*/
-		console.log(values);
-		/*Ext.Ajax.request({
-			url: '/SFO/rest/organization/newOrganization',
-			method: 'POST',
-			params: values,
-			success: function(conn, response) {
-				console.log('Success upload organization');
+				userId: Ext.util.Cookies.get('userId')
 			}
-		});*/
-		var win = Ext.WindowManager.getActive();
-		if(win) { win.close(); }
+		});
 	}
 });

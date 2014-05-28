@@ -35,12 +35,13 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
 			itemId: 'logo-company-id',
             height: 300,
             width: 300,
-            cls: 'logo-company'
+            cls: 'logo_company'
 		},
 		{
 			xtype: 'form',
-            padding: '0 20 0 20',
+            padding: '0 10 0 20',
             itemId: 'info-form-company-id',
+
 
 			layout: {
 				type: 'vbox'
@@ -58,22 +59,26 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
                 {
                     xtype: 'displayfield',
                     name: 'phone',
-                    fieldLabel: 'Телефон'
+                    fieldLabel: 'Телефон',
+                    margin: '0 0 0 20'
                 },
                 {
                     xtype: 'displayfield',
                     name: 'address',
-                    fieldLabel:'Адрес'
+                    fieldLabel:'Адрес',
+                    margin: '0 0 0 20'
                 },
                 {
                 	xtype: 'displayfield',
                 	name: 'postcode',
-                	fieldLabel: 'Индекс'
+                	fieldLabel: 'Индекс',
+                    margin: '0 0 0 20'
                 },
                 {
 					xtype: 'displayfield',
 					name: 'website',
                     itemId: 'manage-account-website-link-id',
+                    margin: '0 0 0 20',
                     renderer: function(website) {
                         return '<a class="website" target="_blank" href="http://' + website + '">' + website + '</a>';
                     }
@@ -87,7 +92,7 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
     	itemId: 'add-info-company-id',
     	items: [
     		{
-                margin: '20 0 0 0',
+                margin: '30 0 0 0',
     			itemId: 'add-info-company-id',
     			html: '<div></div>'
     		}

@@ -88,21 +88,27 @@ Ext.define('COO.view.regPanels.NewCompany',{
 					},
 					items: [
 						{
-							fieldLabel: 'Главная рубрика',
+							//fieldLabel: 'Главная рубрика',
 							displayField: 'name',
 							itemId: 'combo-choose-mainRubric-id',
 							store: 'RubricStore',
 							padding: '0 20 0 0',
 							flex: 1,
-							labelWidth: 140
+							labelWidth: 140,
+							editable: false,
+							emptyText:'Выберите рубрику',
+							allowBlank: false
 						},
 						{
-							fieldLabel: 'Подрубрика',
+							//fieldLabel: 'Подрубрика',
 							displayField: 'name',
 							itemId: 'combo-choose-subRubric-id',
 							store: 'RubricStore',
 							disabled: true,
-							flex: 1
+							flex: 1,
+							editable: false,
+							emptyText: 'Выберите подрубрику',
+							allowBlank: false
 						}
 					]
 				},
@@ -111,8 +117,11 @@ Ext.define('COO.view.regPanels.NewCompany',{
 					itemId: 'new-company-combo-choose-city-id',
 					store: 'CityStore',
 					displayField: 'cityName',
-					fieldLabel: 'Город',
-					padding: '10 10'
+					//fieldLabel: 'Город',
+					padding: '10 10',
+					editable: false,
+					emptyText:'Выберите город',
+					allowBlank: false
 				},
 				{
 					xtype: 'textarea',
@@ -148,8 +157,9 @@ Ext.define('COO.view.regPanels.NewCompany',{
 				{
 					xtype: 'image',
 					itemId: 'image-upload-logo-id',
-					width: 150,
-					height: 150
+					//width: 150,
+					//height: 200
+					cls: 'logo_company position'
 				},
 				{
 					xtype: 'panel',
@@ -163,7 +173,8 @@ Ext.define('COO.view.regPanels.NewCompany',{
 							xtype: 'button',
 							itemId: 'save-new-company-id',
 							text: 'Сохранить',
-							margin: '20 10 0 0'
+							margin: '20 10 0 0',
+							formBind: true
 						}
 					]
 				}
