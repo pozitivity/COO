@@ -44,7 +44,7 @@ Ext.define('COO.controller.WelcomePanel',{
 			},
 			success: function(conn, response){
 				var cityName = Ext.decode(conn.responseText).cityName;
-				Ext.ComponentQuery.query('#header-combo-choose-city-id')[0].setValue(cityName);
+				Ext.ComponentQuery.query('#header-combo-choose-city-id')[0].setValue(cityName, true);
 			}
 		});
 	}

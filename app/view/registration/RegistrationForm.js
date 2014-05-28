@@ -52,8 +52,10 @@ Ext.define("COO.view.registration.RegistrationForm", {
 			displayField: 'cityName',
 			xtype: 'combo',
 			store: 'CityStore',
-			fieldLabel: 'Город',
-			itemId: 'registration-choose-city-id'
+			//fieldLabel: 'Город',
+			itemId: 'registration-choose-city-id',
+			editable: false,
+			emptyText: 'Выберите город'
 		}],
 			
 		dockedItems: [{

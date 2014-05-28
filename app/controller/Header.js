@@ -35,7 +35,7 @@ Ext.define('COO.controller.Header',{
 		);
 	},
 	onButtonLoginClick: function(button, e, options){
-		this.setPressedToolbarButton(button);
+		//this.setPressedToolbarButton(button);
 		console.log('Button login was clicked');
 		var config = {
 			xtype: 'login'
@@ -44,7 +44,7 @@ Ext.define('COO.controller.Header',{
         win.show();
 	},
 	onButtonRegistrationClick: function(button, e, options){
-		this.setPressedToolbarButton(button);
+		//this.setPressedToolbarButton(button);
 		console.log('Button registration was clicked');
 		var config = {
 			xtype: 'registration'

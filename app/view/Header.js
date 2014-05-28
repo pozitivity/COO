@@ -53,11 +53,13 @@ Ext.define("COO.view.Header", {
 					xtype: 'combo',
             		displayField: 'cityName',
             		store: 'CityStore',
-            		fieldLabel: 'Город',
+            		//fieldLabel: 'Город',
             		style: 'margin-top: 10px; margin-left: 20px;',
             		itemId: 'header-combo-choose-city-id',
             		width: 300,
-            		cls: 'combo_choose_city'
+            		cls: 'combo_choose_city',
+            		emptyText: 'Выберите город',
+            		editable: false
 				}
 			]
 		}

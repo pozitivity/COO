@@ -22,6 +22,10 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 		{
 			ref: 'newCompanyFormRef',
 			selector: '#create-company-form-id'
+		},
+		{
+			ref: 'imageUploadLogoRef',
+			selector: '#image-upload-logo-id'
 		}
 	],
 	init: function(application){
@@ -49,8 +53,22 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 			},
 			"button#save-new-company-id": {
 				click: this.onButtonSaveNewCompanyClick
+			},
+			"#field-upload-logo-id": {
+				change: this.previewLogoCompany
 			}
 		});
+	},
+	previewLogoCompany: function(filefield, value, eOpts) {
+		console.log('trying to set Logo at edit company window');
+        var file = filefield.getEl().down('input[type=file]').dom.files[0]; // fibasic is fileuploadfield
+        var reader = new FileReader();
+        reader.onload = (function(theFile, canvas) {
+            return function(e) {
+                canvas.setSrc(e.target.result);
+            };
+        })(file, this.getImageUploadLogoRef());
+        reader.readAsDataURL(file);
 	},
 	onIconEditClick: function(grid, cell, row, col, e){
 		console.log('icon edit click');
@@ -110,8 +128,8 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 			},
 			success: function(conn, response) {
 				//values.infoId = 8;
-				//values.infoId = Ext.decode(conn.responseText).infoId;
-				//console.log(values.infoId);
+				values.infoId = Ext.Number.from(Ext.decode(conn.responseText).infoId, 8);
+				console.log(values.infoId);
 			}
 		});
 		
@@ -123,14 +141,14 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 			},
 		});*/
 		console.log(values);
-		Ext.Ajax.request({
+		/*Ext.Ajax.request({
 			url: '/SFO/rest/organization/newOrganization',
 			method: 'POST',
 			params: values,
 			success: function(conn, response) {
 				console.log('Success upload organization');
 			}
-		});
+		});*/
 		var win = Ext.WindowManager.getActive();
 		if(win) { win.close(); }
 	}

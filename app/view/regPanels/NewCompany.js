@@ -11,7 +11,7 @@ Ext.define('COO.view.regPanels.NewCompany',{
 	autoscroll: true,
 
 	width: 700,
-	height: 700,
+	minHeight: 550,
 	layout: {
 		type: 'vbox',
 		align: 'stretch'
@@ -124,35 +124,32 @@ Ext.define('COO.view.regPanels.NewCompany',{
 				{
 					xtype: 'form',
 					itemId: 'upload-logo-form-id',
+					layout: {
+						type: 'hbox'
+					},
 					items: [
 						{
+							flex: 3,
 							xtype: 'filefield',
+							itemId: 'field-upload-logo-id',
         					name: 'logo',
         					emptyText: 'Логотип',
         					labelWidth: 50,
-        					msgTarget: 'qtip',
+        					msgTarget: 'side',
         					allowBlank: true,
         					anchor: '80%',
-        					buttonText: 'Выберите логотип ...'
-						}
-					],
-					buttons: [
-						{
-							text: 'Upload',
-							handler: function() {
-								var form = this.up('form').getForm();
-								if(form.isValid()) {
-									form.submit({
-										url: '/SFO/rest/logo/upload',
-										waitMsg: 'Ваш логотип загружается...',
-										success: function(fp, o) {
-											Ext.Msg.alert('Success', o.result.file);
-										}
-									});
-								}
-							}
+        					padding: '10 10',
+        					buttonText: 'Выберите логотип ...',
+        					readOnly: true,
+        					fileUpload: true
 						}
 					]
+				},
+				{
+					xtype: 'image',
+					itemId: 'image-upload-logo-id',
+					width: 150,
+					height: 150
 				},
 				{
 					xtype: 'panel',

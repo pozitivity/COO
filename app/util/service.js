@@ -5,6 +5,7 @@ Ext.define('COO.util.service',{
         'COO.view.Main',
         'COO.view.regPanels.RegHeader',
         'COO.view.Header',
+        'COO.view.regPanels.RegHeader'
 	],
 
 	statics: {
@@ -57,9 +58,11 @@ Ext.define('COO.util.service',{
                 scope: this
             });
         },
-        mailSender: function(email, login, password) {
+        mailSender: function(email, login, password, cityName) {
             var subject_registration = "Регистрация";
-            var body_registration = 'Вы успешно прошли регистрацию на сайте coo.com!  Ваш логин: ' + login + '  Ваш пароль: ' + password;
+            var body_registration = 'Вы успешно прошли регистрацию на сайте coo.com! '+
+            ' Ваш логин: ' + login + '  Ваш пароль: ' + password + '  Ваш E-mail: ' + email + 
+            '  Ваш город: ' + cityName;
             Ext.Ajax.request({
                 url: '/SFO/rest/sendmail/sendMailReg',
                 method: 'GET',
@@ -96,7 +99,7 @@ Ext.define('COO.util.service',{
                         dialog.close();
                     }
                     this.login(login, password, dialog);
-                    this.mailSender(email, login, password);
+                    this.mailSender(email, login, password, cityName);
                 },
                 scope: this
             });
@@ -161,7 +164,7 @@ Ext.define('COO.util.service',{
                                     },
                                     success: function(conn, response){
                                         var cityName = Ext.decode(conn.responseText).cityName;
-                                        Ext.ComponentQuery.query('#header-combo-choose-city-id')[0].setValue(cityName);
+                                        Ext.ComponentQuery.query('#header-combo-choose-city-id')[0].setValue(cityName, true);
                                     }
                                 });
                             }
@@ -170,11 +173,6 @@ Ext.define('COO.util.service',{
                 });
             });
             task.delay(1000);
-        },
-        destroyContainer: function() {
-           // debugger;
-            var container = Ext.ComponentQuery.query('#main-container-id')[0];
-            container.destroy();
         },
         initRegApp: function() {
             splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
@@ -199,11 +197,24 @@ Ext.define('COO.util.service',{
                             var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
                             wrc.removeAll();
                             wrc.add(Ext.widget('regHeader'));
+                            //this.setLoginForm();
+                            var userId = Ext.util.Cookies.get('userId');
+                            Ext.Ajax.request({
+                                url: '/SFO/rest/user/byId',
+                                method: 'GET',
+                                params: {
+                                    userId: userId
+                                },
+                                success: function(conn, response) {
+                                //Ext.ComponentQuery.query('#form-login-user-id')[0].getForm().setValues(Ext.decode(conn.responseText));
+                                Ext.ComponentQuery.query('#form-login-user-id')[0].update('<div>' + Ext.decode(conn.responseText).login + '</div>');
+                                }
+                            });
                             //wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
                             //wrc.removeAll();
                             //Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
                         
-                            cityId = Ext.util.Cookies.get("cityId");
+                            cityId = Ext.util.Cookies.get('cityId');
                             if(cityId != null || cityId != '' || cityId != undefined) {
                                 Ext.Ajax.request({
                                     url: '/SFO/rest/city/city',
@@ -213,7 +224,7 @@ Ext.define('COO.util.service',{
                                     },
                                     success: function(conn, response){
                                         var cityName = Ext.decode(conn.responseText).cityName;
-                                        Ext.ComponentQuery.query('#regheader-combo-choose-city-id')[0].setValue(cityName);
+                                        Ext.ComponentQuery.query('#regheader-combo-choose-city-id')[0].setValue(cityName, true);
                                     }
                                 });
                             }
@@ -223,7 +234,20 @@ Ext.define('COO.util.service',{
             });
             task.delay(1000);
         },
-
+        setLoginForm: function() {
+            debugger;
+            var userId = Ext.util.Cookies.get('userId');
+            Ext.Ajax.request({
+                url: '/SFO/rest/user/byId',
+                method: 'GET',
+                params: {
+                    userId: userId
+                },
+                success: function(conn, response) {
+                    Ext.ComponentQuery.query('#form-login-user-id')[0].getForm.setValues(Ext.decode(conn.responseText));
+                }
+            });
+        },
         initAdminApp: function() {
 
         }

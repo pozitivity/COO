@@ -51,14 +51,17 @@ Ext.define('COO.view.welcomePanel.WelcomePanel',{
 					html: '<div style="text-align: center;font-size: 20px;">Здесь будет представлена небольшая инструкция по пользованию системой</div>'
 				},
 				{
-					html: '<div style="text-align: center;font-size: 18px;">Для начала выберите город:</div>'
+					html: '<div style="text-align: center;font-size: 18px;">Для начала:</div>'
 				},
 				{
 					xtype: 'combo',
             		displayField: 'cityName',
             		store: 'CityStore',
             		margin: '20 40 20 40',
-            		itemId: 'combo-choose-city-id'
+            		itemId: 'combo-choose-city-id',
+            		clearFilterOnBlur: true,
+            		emptyText: 'Выберите город',
+            		editable: false,
 				}
 			]
 		},

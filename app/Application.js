@@ -24,7 +24,8 @@ Ext.define('COO.Application', {
         'Login',
         'Registration',
         'mainPanels.RegHeader',
-        'mainPanels.MyCompanies'
+        'mainPanels.MyCompanies',
+        'mainPanels.Profile'
     ],
 
     stores: [
@@ -44,11 +45,11 @@ Ext.define('COO.Application', {
         var isAuth = Ext.util.Cookies.get("isAuth");
 
         if (isAuth === undefined || isAuth == 'null' || isAuth == null || isAuth.length <= 0 || isAuth != 1) {
-            splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
+            /*splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
             splashscreen.addCls('splashscreen');
             Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
                 cls: 'x-splash-icon'
-            });
+            });*/
         }
         console.log('Init application');
     },
@@ -60,7 +61,7 @@ Ext.define('COO.Application', {
 
 
         if (isAuth === undefined || isAuth == 'null' || isAuth == null || isAuth.length <= 0 || isAuth != 1) {
-            
+
             COO.util.service.initApp();
             Ext.widget('welcomePanel');
         } else {

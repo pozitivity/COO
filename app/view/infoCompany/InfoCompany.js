@@ -87,6 +87,7 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
     	itemId: 'add-info-company-id',
     	items: [
     		{
+                margin: '20 0 0 0',
     			itemId: 'add-info-company-id',
     			html: '<div></div>'
     		}

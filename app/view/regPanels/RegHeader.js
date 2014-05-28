@@ -41,21 +41,34 @@ Ext.define('COO.view.regPanels.RegHeader',{
 					{
 						xtype: 'button',
 						text: 'Мои компании',
-						margin: '20 0 0 100',
+						margin: '20 0 0 150',
 						cls: 'toolbar',
 						itemId: 'my-companies-id'
 					},
 					{
 						xtype: 'button',
 						text: 'Профиль',
-						margin: '20 0 0 100',
+						margin: '20 0 0 150',
 						cls: 'toolbar',
 						itemId: 'profile-id'
 					},
 					{
+						xtype: 'form',
+						//itemId: 'form-login-user-id',
+						width: 60,
+						margin: '0 0 0 80',
+						items: [
+							{
+								html: '<div style="align:right"></div>',
+								itemId: 'form-login-user-id',
+							}
+						]
+
+					},
+					{
 						xtype: 'button',
 						text: 'Выйти',
-						margin: '20 0 0 100',
+						margin: '20 0 0 10',
 						itemId: 'button-logout-id',
 						cls: 'toolbar'
 					}
@@ -65,11 +78,13 @@ Ext.define('COO.view.regPanels.RegHeader',{
 				xtype: 'combo',
             	displayField: 'cityName',
             	store: 'CityStore',
-            	fieldLabel: 'Город',
+            	//fieldLabel: 'Город',
             	width: 385,
             	style: 'margin-top: 10px; margin-left: 20px;',
             	itemId: 'regheader-combo-choose-city-id',
-            	cls: 'combo_choose_city'
+            	cls: 'combo_choose_city',
+            	editable: false,
+            	emptyText: 'Выберите город'
 			}
 			]
 		}
