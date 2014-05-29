@@ -4,7 +4,8 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 		'COO.view.regPanels.MyCompanies'
 	],
 	requires:[
-		'COO.view.regPanels.NewCompany'
+		'COO.view.regPanels.NewCompany',
+		'COO.view.regPanels.EditCompany'
 	],
 	refs: [
 		{
@@ -39,12 +40,6 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 	init: function(application){
 		console.log('[OK] Init MyCompanies controller');
 		this.control({
-			"actioncolumn#action-column-edit-company-id": {
-				click: this.onIconEditClick
-			},
-			"actioncolumn#action-column-delete-company-id": {
-				click: this.onIconDeleteClick
-			},
 			"button#button-add-new-company-id": {
 				click: this.onButtonAddNewCompanyClick
 			},
@@ -77,12 +72,6 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
             };
         })(file, this.getImageUploadLogoRef());
         reader.readAsDataURL(file);
-	},
-	onIconEditClick: function(grid, cell, row, col, e){
-		console.log('icon edit click');
-	},
-	onIconDeleteClick: function(grid, cell, row, col, e){
-		console.log('icon delete click');
 	},
 	onButtonAddNewCompanyClick: function(button, e, options){
 		console.log('button add new company click');
@@ -123,10 +112,8 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 		values.rubricId = this.getComboSubRubricRef().displayTplData[0].rubricId;
 		values.cityId = this.getComboCityRef().displayTplData[0].cityId;
 		values.userId = Ext.util.Cookies.get('userId');
-		values.logoId = 9;
-		console.log(Ext.ComponentQuery.query('#upload-logo-form-id')[0].getForm().getValues());
 		var info = this.getNewCompanyFormRef().getForm().getValues().info;
-		values.infoId = 15;
+		//values.infoId = 15;
 		console.log(info);
 		Ext.Ajax.request({
 			url: '/SFO/rest/info/newInfo',
@@ -149,7 +136,7 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
                 'Content-Type':'image/png',
                 'accept':'application/json'
             },
-            waitMsg:'Данные о компании загружаются...',
+            waitMsg:'Организация создается...',
             success:function(conn, response, options, eOpts){
 
             },
@@ -164,12 +151,14 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 					params: values,
 					success: function(conn, response) {
 						console.log('Success upload organization');
-						this.updateMyCompaniesList()
+						this.updateMyCompaniesList();
+						var win = Ext.WindowManager.getActive();
+						if(win) { win.close(); }
 					},
 					scope: this
 				});
-				var win = Ext.WindowManager.getActive();
-				if(win) { win.close(); }
+				//var win = Ext.WindowManager.getActive();
+				//if(win) { win.close(); }
             },
             scope: this
         });

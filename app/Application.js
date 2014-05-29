@@ -25,14 +25,17 @@ Ext.define('COO.Application', {
         'Registration',
         'mainPanels.RegHeader',
         'mainPanels.MyCompanies',
-        'mainPanels.Profile'
+        'mainPanels.Profile',
+        'admPanel.AdmHeader',
+        //'mainPanels.EditCompany'
     ],
 
     stores: [
         'RubricStore',
 		'OrganizationStore',
         'CityStore',
-        'MyOrganizationStore'
+        'MyOrganizationStore',
+        'AdmOrganizationStore'
     ],
 
     requires: [
@@ -58,14 +61,18 @@ Ext.define('COO.Application', {
         console.log('Launch application');
 
         var isAuth = Ext.util.Cookies.get("isAuth");
-
+        var userId = Ext.util.Cookies.get("userId");
 
         if (isAuth === undefined || isAuth == 'null' || isAuth == null || isAuth.length <= 0 || isAuth != 1) {
 
             COO.util.service.initApp();
             Ext.widget('welcomePanel');
         } else {
-            COO.util.service.initRegApp();
+            if(userId === '2') {
+                COO.util.service.initAdmApp();
+            } else {
+                COO.util.service.initRegApp();
+            }
         }
     },
 

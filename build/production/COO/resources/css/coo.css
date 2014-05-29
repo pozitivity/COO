@@ -98,10 +98,15 @@
 }
 .size_icon{
     width: 27px !important;
-    height: 27px !important;
+    height: 25px !important;
     text-align: center !important;
 }
-.combo_choose_city{
-    outline: none !important;
-    border: none !important;
+.logo_company{
+    border-radius: 5px !important;
+    width: 150px;
+    height: 150px;
+}
+.position{
+    margin-right:254px;
+    margin-left:254px;
 }

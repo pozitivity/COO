@@ -130,7 +130,7 @@ Ext.define('COO.controller.mainPanels.RegHeader', {
     		url: '/SFO/rest/authentication/logout'
     	});
         Ext.util.Cookies.set('userId', 0);
-        Ext.util.COOkies.set('isAuth', 0);
+        Ext.util.Cookies.set('isAuth', 0);
         //COO.util.service.destroyContainer();
         //debugger;
         COO.util.service.initApp();

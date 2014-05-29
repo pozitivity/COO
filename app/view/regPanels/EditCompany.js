@@ -1,7 +1,6 @@
-Ext.define('COO.view.regPanels.NewCompany',{
+Ext.define('COO.view.regPanels.EditCompany',{
 	extend: 'Ext.window.Window',
-
-	alias: 'widget.newCompany',
+	alias: 'widget.editCompany',
 
 	resizable: true,
 	shadow: false,
@@ -20,16 +19,20 @@ Ext.define('COO.view.regPanels.NewCompany',{
 		padding: 20
 	},
 
-	title: 'Новая организация',
+	title: 'Редактирование организации',
 	items: [
 		{
 			xtype: 'form',
-			itemId: 'create-company-form-id',
+			itemId: 'edit-company-form-id',
 			layout: {
 				type: 'vbox',
 				align: 'stretch'
 			},
 			items: [
+				{
+					xtype: 'hidden',
+					name: 'organizationId'
+				},
 				{
 					xtype: 'fieldcontainer',
 					layout: 'hbox',
@@ -88,9 +91,8 @@ Ext.define('COO.view.regPanels.NewCompany',{
 					},
 					items: [
 						{
-							//fieldLabel: 'Главная рубрика',
 							displayField: 'name',
-							itemId: 'combo-choose-mainRubric-id',
+							itemId: 'edit-combo-choose-mainRubric-id',
 							store: 'RubricStore',
 							padding: '0 20 0 0',
 							flex: 1,
@@ -100,11 +102,10 @@ Ext.define('COO.view.regPanels.NewCompany',{
 							allowBlank: false
 						},
 						{
-							//fieldLabel: 'Подрубрика',
 							displayField: 'name',
-							itemId: 'combo-choose-subRubric-id',
+							itemId: 'edit-combo-choose-subRubric-id',
 							store: 'RubricStore',
-							disabled: true,
+							//disabled: true,
 							flex: 1,
 							editable: false,
 							emptyText: 'Выберите подрубрику',
@@ -114,10 +115,9 @@ Ext.define('COO.view.regPanels.NewCompany',{
 				},
 				{
 					xtype: 'combo',
-					itemId: 'new-company-combo-choose-city-id',
+					itemId: 'edit-company-combo-choose-city-id',
 					store: 'CityStore',
 					displayField: 'cityName',
-					//fieldLabel: 'Город',
 					padding: '10 10',
 					editable: false,
 					emptyText:'Выберите город',
@@ -127,12 +127,13 @@ Ext.define('COO.view.regPanels.NewCompany',{
 					xtype: 'textarea',
 					name: 'info',
 					padding: '10 10',
+					itemId: 'textarea-info-id',
 					fieldLabel: 'Дополнительная информация',
 					labelWidth: 130
 				},
 				{
 					xtype: 'form',
-					itemId: 'upload-logo-form-id',
+					itemId: 'edit-upload-logo-form-id',
 					layout: {
 						type: 'hbox'
 					},
@@ -140,7 +141,7 @@ Ext.define('COO.view.regPanels.NewCompany',{
 						{
 							flex: 3,
 							xtype: 'filefield',
-							itemId: 'field-upload-logo-id',
+							itemId: 'edit-field-upload-logo-id',
         					name: 'logo',
         					emptyText: 'Логотип',
         					labelWidth: 50,
@@ -156,9 +157,7 @@ Ext.define('COO.view.regPanels.NewCompany',{
 				},
 				{
 					xtype: 'image',
-					itemId: 'image-upload-logo-id',
-					//width: 150,
-					//height: 200
+					itemId: 'edit-image-upload-logo-id',
 					cls: 'logo_company position'
 				},
 				{
@@ -171,7 +170,7 @@ Ext.define('COO.view.regPanels.NewCompany',{
 					items: [
 						{
 							xtype: 'button',
-							itemId: 'save-new-company-id',
+							itemId: 'save-edit-company-id',
 							text: 'Сохранить',
 							margin: '20 10 0 0',
 							formBind: true

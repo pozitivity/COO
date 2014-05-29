@@ -1287,11 +1287,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "COO.controller.Registration": [],
   "COO.controller.RubricList": [],
   "COO.controller.WelcomePanel": [],
+  "COO.controller.admPanel.AdmHeader": [],
+  "COO.controller.mainPanels.EditCompany": [],
   "COO.controller.mainPanels.MyCompanies": [],
+  "COO.controller.mainPanels.Profile": [],
   "COO.controller.mainPanels.RegHeader": [],
   "COO.model.City": [],
   "COO.model.Organization": [],
   "COO.model.Rubric": [],
+  "COO.store.AdmOrganizationStore": [],
   "COO.store.CityStore": [],
   "COO.store.MyOrganizationStore": [],
   "COO.store.OrganizationStore": [],
@@ -1301,11 +1305,16 @@ Ext.ClassManager.addNameAlternateMappings({
   "COO.view.Footer": [],
   "COO.view.Header": [],
   "COO.view.Main": [],
+  "COO.view.admPanel.AdmHeader": [],
+  "COO.view.admPanel.adminPanel": [],
+  "COO.view.admPanel.viewPanel": [],
   "COO.view.infoCompany.InfoCompany": [],
   "COO.view.login.Login": [],
   "COO.view.organizationList.OrganizationList": [],
+  "COO.view.regPanels.EditCompany": [],
   "COO.view.regPanels.MyCompanies": [],
   "COO.view.regPanels.NewCompany": [],
+  "COO.view.regPanels.Profile": [],
   "COO.view.regPanels.RegHeader": [],
   "COO.view.registration.RegistrationForm": [],
   "COO.view.rubricList.RubricList": [],
@@ -2354,11 +2363,17 @@ Ext.ClassManager.addNameAliasMappings({
   "COO.controller.Registration": [],
   "COO.controller.RubricList": [],
   "COO.controller.WelcomePanel": [],
+  "COO.controller.admPanel.AdmHeader": [],
+  "COO.controller.mainPanels.EditCompany": [],
   "COO.controller.mainPanels.MyCompanies": [],
+  "COO.controller.mainPanels.Profile": [],
   "COO.controller.mainPanels.RegHeader": [],
   "COO.model.City": [],
   "COO.model.Organization": [],
   "COO.model.Rubric": [],
+  "COO.store.AdmOrganizationStore": [
+    "store.admOrganizations"
+  ],
   "COO.store.CityStore": [
     "store.cities"
   ],
@@ -2382,6 +2397,13 @@ Ext.ClassManager.addNameAliasMappings({
   "COO.view.Main": [
     "widget.mainpanel"
   ],
+  "COO.view.admPanel.AdmHeader": [
+    "widget.admHeader"
+  ],
+  "COO.view.admPanel.adminPanel": [
+    "widget.adminPanel"
+  ],
+  "COO.view.admPanel.viewPanel": [],
   "COO.view.infoCompany.InfoCompany": [
     "widget.infoCompanyPanel"
   ],
@@ -2391,11 +2413,17 @@ Ext.ClassManager.addNameAliasMappings({
   "COO.view.organizationList.OrganizationList": [
     "widget.organizationList"
   ],
+  "COO.view.regPanels.EditCompany": [
+    "widget.editCompany"
+  ],
   "COO.view.regPanels.MyCompanies": [
     "widget.myCompaniesPanel"
   ],
   "COO.view.regPanels.NewCompany": [
     "widget.newCompany"
+  ],
+  "COO.view.regPanels.Profile": [
+    "widget.profilePanel"
   ],
   "COO.view.regPanels.RegHeader": [
     "widget.regHeader"

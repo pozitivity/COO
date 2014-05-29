@@ -12,7 +12,8 @@ Ext.define('COO.view.Container', {
 		'COO.view.Header',
 		'COO.view.Main',
 		'COO.view.Footer',
-		'COO.view.regPanels.RegHeader'
+		'COO.view.regPanels.RegHeader',
+        'COO.view.admPanel.AdmHeader'
 	],
 	
     itemId: 'main-container-id',

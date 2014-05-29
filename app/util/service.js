@@ -5,7 +5,10 @@ Ext.define('COO.util.service',{
         'COO.view.Main',
         'COO.view.regPanels.RegHeader',
         'COO.view.Header',
-        'COO.view.regPanels.RegHeader'
+        'COO.view.regPanels.RegHeader',
+        'COO.view.admPanel.adminPanel',
+        //'COO.view.regPanels.EditCompany'
+        'COO.view.admPanel.viewPanel'
 	],
 
 	statics: {
@@ -48,12 +51,10 @@ Ext.define('COO.util.service',{
                     });
                 },
                 success: function(conn, response){
-                    if(dialog != undefined || dialog != null) {
-                        dialog.close();
-                    }
+                    dialog.removeAll();
+                    dialog.close();
                     Ext.util.Cookies.set("isAuth", 1);
-                    //debugger;
-                    this.setFieldUserId(login);
+                    this.setFieldUserId(login, password);
                 },
                 scope: this
             });
@@ -96,6 +97,7 @@ Ext.define('COO.util.service',{
                 },          
                 success: function(conn, response, success){
                     if(dialog != undefined || dialog != null) {
+                        dialog.removeAll();
                         dialog.close();
                     }
                     this.login(login, password, dialog);
@@ -105,7 +107,7 @@ Ext.define('COO.util.service',{
             });
         },
 
-        setFieldUserId: function(login){
+        setFieldUserId: function(login, password){
             Ext.Ajax.request({
                     method: 'GET',
                     url: '/SFO/rest/user/byLogin',
@@ -115,9 +117,12 @@ Ext.define('COO.util.service',{
                     success: function(conn, response){
                         console.log(Ext.decode(conn.responseText));
                         Ext.util.Cookies.set('userId', Ext.decode(conn.responseText).userId);
-                        //this.destroyContainer();
-                        //debugger;
-                        this.initRegApp();
+                        console.log(Ext.decode(conn.responseText).typeUser.typeUserId);
+                        if(Ext.Number.from(Ext.decode(conn.responseText).typeUser.typeUserId, 1) === 2) {
+                            this.initAdmApp();
+                        } else {
+                            this.initRegApp();
+                        }
                     },
                     failure: function(){
 
@@ -143,14 +148,9 @@ Ext.define('COO.util.service',{
                     remove: true,
                     listeners: {
                         afteranimate: function(el, startTime, eOpts) {
-                            //Ext.create('COO.view.Container');
-                            //debugger;
                             var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
                             wrc.removeAll();
                             wrc.add(Ext.widget('headerpanel'));
-                            //wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
-                            //wrc.removeAll();
-                            //Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
 
                             var cityId = Ext.util.Cookies.get('cityId');
                             if(cityId != null || cityId != '' || cityId != undefined) {
@@ -191,12 +191,76 @@ Ext.define('COO.util.service',{
                     remove: true,
                     listeners: {
                         afteranimate: function(el, startTime, eOpts) {
-                            //debugger;
-                            //Ext.create('COO.view.Container');
-                            //debugger;
                             var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
                             wrc.removeAll();
                             wrc.add(Ext.widget('regHeader'));
+                            //this.setLoginForm();
+                            var userId = Ext.util.Cookies.get('userId');
+                            Ext.Ajax.request({
+                                url: '/SFO/rest/user/byId',
+                                method: 'GET',
+                                params: {
+                                    userId: userId
+                                },
+                                success: function(conn, response) {
+                                Ext.ComponentQuery.query('#form-login-user-id')[0].update('<div>' + Ext.decode(conn.responseText).login + '</div>');
+                                }
+                            });
+                        
+                            cityId = Ext.util.Cookies.get('cityId');
+                            if(cityId != null || cityId != '' || cityId != undefined) {
+                                Ext.Ajax.request({
+                                    url: '/SFO/rest/city/city',
+                                    method: 'GET',
+                                    params: {
+                                        cityId: cityId
+                                    },
+                                    success: function(conn, response){
+                                        var cityName = Ext.decode(conn.responseText).cityName;
+                                        Ext.ComponentQuery.query('#regheader-combo-choose-city-id')[0].setValue(cityName, true);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+            task.delay(1000);
+        },
+        initAdmApp: function() {
+            splashscreen = Ext.getBody().mask('Загрузка приложения', 'splashscreen');
+            splashscreen.addCls('splashscreen');
+            Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
+                cls: 'x-splash-icon'
+            });
+            var task = new Ext.util.DelayedTask(function() {
+                splashscreen.fadeOut({
+                    duration: 500,
+                    remove: true
+                });
+                
+                splashscreen.next().fadeOut({
+                    duration: 500,
+                    remove: true,
+                    listeners: {
+                        afteranimate: function(el, startTime, eOpts) {
+                            var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
+                            wrc.removeAll();
+                            wrc.add(Ext.widget('admHeader'));
+                            wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
+                            wrc.removeAll();
+                            wrc.add(Ext.widget('adminPanel'));
+                           // Ext.Ajax.request({
+                              //  url: '/SFO/rest/organization/byPublished',
+                                //method: 'GET',
+                                //success: function(conn, response) {
+                                   // console.log(conn.responseText);
+                                   // if(conn.responseText != null) {
+                                        Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().reload();
+                                    //}
+                               // }
+                            //});
+                            //Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().load();
                             //this.setLoginForm();
                             var userId = Ext.util.Cookies.get('userId');
                             Ext.Ajax.request({
@@ -224,7 +288,7 @@ Ext.define('COO.util.service',{
                                     },
                                     success: function(conn, response){
                                         var cityName = Ext.decode(conn.responseText).cityName;
-                                        Ext.ComponentQuery.query('#regheader-combo-choose-city-id')[0].setValue(cityName, true);
+                                        Ext.ComponentQuery.query('#admheader-combo-choose-city-id')[0].setValue(cityName, true);
                                     }
                                 });
                             }
@@ -235,7 +299,6 @@ Ext.define('COO.util.service',{
             task.delay(1000);
         },
         setLoginForm: function() {
-            debugger;
             var userId = Ext.util.Cookies.get('userId');
             Ext.Ajax.request({
                 url: '/SFO/rest/user/byId',
@@ -248,8 +311,73 @@ Ext.define('COO.util.service',{
                 }
             });
         },
-        initAdminApp: function() {
+        onIconMyCompaniesDeleteClick: function(grid, rowIndex, colIndex){
+            console.log('On my companies icon delete click');
+            //debugger;
+            var rec = grid.getStore().getAt(rowIndex);
+            var organizationId = rec.get('organizationId');
+            console.log(organizationId);
+            Ext.Ajax.request({
+                url: '/SFO/rest/organization/deleteOrganization',
+                method: 'DELETE',
+                params: {
+                    organizationId: organizationId
+                },
+                success: function(conn, response) {
+                    console.log('Organization successed deleted');
+                }
+            });
+            grid.getStore().load({
+                params: {
+                    userId: Ext.Number.from(Ext.util.Cookies.get('userId'),0)
+                }
+            });
+        },
+        onIconMyCompaniesEditClick: function(grid, rowIndex, colIndex) {
+            console.log('On my companies icon edit click');
+            //debugger;
+            var rec = grid.getStore().getAt(rowIndex);
+            var organizationId = rec.get('organizationId');
+            console.log(organizationId);
+            var config = {
+                xtype: 'editCompany'
+            }
+            var win = Ext.ComponentMgr.create(config);
+            win.show();
+            console.log(rec.data);
+            Ext.ComponentQuery.query('#edit-company-form-id')[0].getForm().setValues(rec.data);
+            Ext.ComponentQuery.query('#edit-company-combo-choose-city-id')[0].setValue(rec.data.city.cityName);
+            Ext.ComponentQuery.query('#edit-combo-choose-subRubric-id')[0].setValue(rec.data.rubric.name);
+            Ext.ComponentQuery.query('#textarea-info-id')[0].setValue(rec.data.info.info);
+            console.log(rec.data.info.info);
 
+            Ext.Ajax.request({
+                url: '/SFO/rest/rubric/mainRubric',
+                method: 'GET',
+                params: {
+                    mainRubricId: rec.data.rubric.mainRubricId
+                },
+                success: function(conn, response, text) {
+                    Ext.ComponentQuery.query('#edit-combo-choose-mainRubric-id')[0].setValue(Ext.decode(conn.responseText).name);
+                }
+            });
+            Ext.ComponentQuery.query('#edit-image-upload-logo-id')[0].setSrc('/SFO/rest/logo/byId?logoId='+rec.data.logo.logoId);
+        },
+        onIconAdminViewClick: function(grid, rowIndex, colIndex) {
+            console.log('On admin icon view');
+
+            var rec = grid.getStore().getAt(rowIndex);
+            console.log(rec.data);
+            var config = {
+                xtype: 'admView'
+            }
+            var win = Ext.ComponentMgr.create(config);
+            win.show();
+
+            console.log(rec.data);
+            Ext.ComponentQuery.query('#view-name-company-id')[0].getForm().setValues(rec.data);
+            Ext.ComponentQuery.query('#view-info-form-company-id')[0].getForm().setValues(rec.data);
+            Ext.ComponentQuery.query('#view-logo-company-id')[0].setSrc('/SFO/rest/logo/byId?logoId=' + rec.data.logo.logoId);
         }
 	}
 });

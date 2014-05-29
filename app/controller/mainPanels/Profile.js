@@ -38,6 +38,14 @@ Ext.define('COO.controller.mainPanels.Profile',{
 			params: values,
 			success: function(conn, response) {
 				//console.log(conn.responseText);
+				Ext.Msg.show(
+					{
+						title: 'Уведомление',
+                        msg: 'Ваши данные сохранены.<br/>Вам отправлено письмо с измененными данными.',
+                        icon: Ext.Msg.INFO,
+                        buttons: Ext.Msg.OK
+					}
+				);
 				this.sendMail(values.email, values.password, values.cityName, Ext.decode(conn.responseText).login);
 
 			},

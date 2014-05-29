@@ -42,6 +42,7 @@ Ext.define('COO.controller.Header',{
 		}
 		var win = Ext.ComponentMgr.create(config);
         win.show();
+       // Ext.ComponentQuery.query('#login-form-id')[0].getForm().reset();
 	},
 	onButtonRegistrationClick: function(button, e, options){
 		//this.setPressedToolbarButton(button);

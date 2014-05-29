@@ -34,14 +34,14 @@ Ext.define('COO.controller.RubricList',{
 		
 		Ext.ComponentQuery.query('#field-back-rubricId')[0].getForm().setValues(record.data);
 		if (rubricId <= 5) {
-				this.getRubricListGridpanel().getStore().load({
+				this.getRubricListGridpanel().getStore().reload({
 				params: {
 					mainRubricId: rubricId
 				}
 			});
 		} else {
 			this.getOrganizationListGridPanel().show();
-			this.getOrganizationListGridPanel().getStore().load({
+			this.getOrganizationListGridPanel().getStore().reload({
 				params: {
 					cityId: cityId,
 					rubricId: rubricId

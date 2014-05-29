@@ -3,7 +3,8 @@ Ext.define('COO.view.regPanels.MyCompanies',{
 	alias: 'widget.myCompaniesPanel',
 
 	requires: [
-		'Ext.grid.column.Action'
+		'Ext.grid.column.Action',
+		//'COO.controller.mainPanels.MyCompanies'
 	],
 	layout: {
 		type: 'vbox',
@@ -55,6 +56,9 @@ Ext.define('COO.view.regPanels.MyCompanies',{
 							icon: 'resources/icons/myCompanies/edit.png',
 							tooltip: 'Редактировать',
 							iconCls: 'size_icon',
+							handler: function(grid, rowIndex, colIndex) {
+								COO.util.service.onIconMyCompaniesEditClick(grid, rowIndex, colIndex);
+							}
 						}
 					]
 				},
@@ -67,6 +71,9 @@ Ext.define('COO.view.regPanels.MyCompanies',{
 							icon: 'resources/icons/myCompanies/del.png',
 							tooltip: 'Удалить',
 							iconCls: 'size_icon',
+							handler:  function(grid, rowIndex, colIndex) {
+								COO.util.service.onIconMyCompaniesDeleteClick(grid, rowIndex, colIndex);
+							}
 						}
 					]
 				}

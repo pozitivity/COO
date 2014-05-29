@@ -1,7 +1,7 @@
-Ext.define('COO.view.regPanels.RegHeader',{
+Ext.define('COO.view.admPanel.AdmHeader',{
 	extend: 'Ext.panel.Panel',
 
-	alias: 'widget.regHeader',
+	alias: 'widget.admHeader',
 
 
 	layout: {
@@ -32,17 +32,10 @@ Ext.define('COO.view.regPanels.RegHeader',{
 				items: [
 					{
 						xtype: 'button',
-						text: 'Мои компании',
+						text: 'Неопубликованные компании',
 						margin: '20 0 0 150',
 						cls: 'toolbar',
-						itemId: 'my-companies-id'
-					},
-					{
-						xtype: 'button',
-						text: 'Профиль',
-						margin: '20 0 0 150',
-						cls: 'toolbar',
-						itemId: 'profile-id'
+						itemId: 'no-published-company-id'
 					},
 					{
 						xtype: 'form',
@@ -61,7 +54,7 @@ Ext.define('COO.view.regPanels.RegHeader',{
 						xtype: 'button',
 						text: 'Выйти',
 						margin: '20 0 0 10',
-						itemId: 'button-logout-id',
+						itemId: 'adm-button-logout-id',
 						cls: 'toolbar'
 					}
 				]
@@ -73,7 +66,7 @@ Ext.define('COO.view.regPanels.RegHeader',{
             	//fieldLabel: 'Город',
             	width: 385,
             	style: 'margin-top: 10px; margin-left: 20px;',
-            	itemId: 'regheader-combo-choose-city-id',
+            	itemId: 'admheader-combo-choose-city-id',
             	cls: 'combo_choose_city',
             	editable: false,
             	emptyText: 'Выберите город'

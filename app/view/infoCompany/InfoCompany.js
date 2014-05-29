@@ -89,12 +89,18 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
     },
     {
     	xtype: 'form',
+        width: 550,
+        //height: 50,
+        autoScroll: true,
     	itemId: 'add-info-company-id',
     	items: [
     		{
                 margin: '30 0 0 0',
     			itemId: 'add-info-company-id',
-    			html: '<div></div>'
+    			html: '<div></div>',
+                //width: 300,
+                height: 80,
+                autoScroll: true
     		}
     	]
     }]

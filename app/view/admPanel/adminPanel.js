@@ -1,5 +1,5 @@
 Ext.define('COO.view.admPanel.adminPanel',{
-	extend: 'Ext..panel.Panel',
+	extend: 'Ext.panel.Panel',
 	alias: 'widget.adminPanel',
 
 	layout: {
@@ -10,11 +10,10 @@ Ext.define('COO.view.admPanel.adminPanel',{
 	items: [
 		{
 			xtype: 'grid',
-			xtype: 'grid',
 			autoScroll: true,
 			width: 700,
 			height: 400,
-			itemId: 'my-organization-list-gridpanel',
+			itemId: 'adm-organization-list-gridpanel',
 			forceFit: true,
 			selType: 'rowmodel',
 			hideHeaders: true,
@@ -22,35 +21,34 @@ Ext.define('COO.view.admPanel.adminPanel',{
 			collapsible: false,
 			multiSelect: false,
 			columnLines: false,
-			title: 'Мои компании',
+			title: 'Неопубликованные организации',
 			style: 'margin-top:43px',
-			store: 'MyOrganizationStore',
+			store: 'AdmOrganizationStore',
 			columns: [
 				{
 					dataIndex: 'name',
 					flex: 2
 				},
+				/*{
+					dataIndex: 'login',
+					flex: 1,
+					renderer: function(grid, rowIndex, colIndex) {
+						var rec = this.getStore().geAt(rowIndex);
+						console.log(rec.data.user.login);
+					}
+				},*/
 				{
 					xtype: 'actioncolumn',
-					itemId: 'action-column-edit-company-id',
+					itemId: 'adm-view-company-id',
 					align: 'center',
 					items: [
 						{
-							icon: 'resources/icons/myCompanies/edit.png',
+							icon: 'resources/icons/view.png',
 							tooltip: 'Просмотр',
 							iconCls: 'size_icon',
-						}
-					]
-				},
-				{
-					xtype: 'actioncolumn',
-					itemId: 'action-column-delete-company-id',
-					align: 'center',
-					items: [
-						{
-							icon: 'resources/icons/myCompanies/del.png',
-							tooltip: 'Удалить',
-							iconCls: 'size_icon',
+							handler: function(grid, rowIndex, colIndex) {
+								COO.util.service.onIconAdminViewClick(grid, rowIndex, colIndex);
+							}
 						}
 					]
 				}
