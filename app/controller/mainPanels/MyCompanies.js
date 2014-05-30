@@ -157,8 +157,6 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 					},
 					scope: this
 				});
-				//var win = Ext.WindowManager.getActive();
-				//if(win) { win.close(); }
             },
             scope: this
         });

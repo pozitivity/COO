@@ -61,9 +61,9 @@ Ext.define('COO.util.service',{
         },
         mailSender: function(email, login, password, cityName) {
             var subject_registration = "Регистрация";
-            var body_registration = 'Вы успешно прошли регистрацию на сайте coo.com! '+
-            ' Ваш логин: ' + login + '  Ваш пароль: ' + password + '  Ваш E-mail: ' + email + 
-            '  Ваш город: ' + cityName;
+            var body_registration = 'Вы успешно прошли регистрацию на сайте coo.com! ↵↵'+
+            ' Ваш логин: ' + login + '↵↵  Ваш пароль: ' + password + '↵↵  Ваш E-mail: ' + email + 
+            '↵↵  Ваш город: ' + cityName;
             Ext.Ajax.request({
                 url: '/SFO/rest/sendmail/sendMailReg',
                 method: 'GET',
@@ -115,9 +115,7 @@ Ext.define('COO.util.service',{
                         login: login
                     },
                     success: function(conn, response){
-                        console.log(Ext.decode(conn.responseText));
                         Ext.util.Cookies.set('userId', Ext.decode(conn.responseText).userId);
-                        console.log(Ext.decode(conn.responseText).typeUser.typeUserId);
                         if(Ext.Number.from(Ext.decode(conn.responseText).typeUser.typeUserId, 1) === 2) {
                             this.initAdmApp();
                         } else {
@@ -147,7 +145,7 @@ Ext.define('COO.util.service',{
                     duration: 500,
                     remove: true,
                     listeners: {
-                        afteranimate: function(el, startTime, eOpts) {
+                        beforeanimate: function(el, startTime, eOpts) {
                             var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
                             wrc.removeAll();
                             wrc.add(Ext.widget('headerpanel'));
@@ -190,7 +188,7 @@ Ext.define('COO.util.service',{
                     duration: 500,
                     remove: true,
                     listeners: {
-                        afteranimate: function(el, startTime, eOpts) {
+                        beforeanimate: function(el, startTime, eOpts) {
                             var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
                             wrc.removeAll();
                             wrc.add(Ext.widget('regHeader'));
@@ -243,25 +241,14 @@ Ext.define('COO.util.service',{
                     duration: 500,
                     remove: true,
                     listeners: {
-                        afteranimate: function(el, startTime, eOpts) {
-                            var wrc = Ext.ComponentQuery.query('#header-panel-id')[0];
-                            wrc.removeAll();
-                            wrc.add(Ext.widget('admHeader'));
-                            wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
-                            wrc.removeAll();
-                            wrc.add(Ext.widget('adminPanel'));
-                           // Ext.Ajax.request({
-                              //  url: '/SFO/rest/organization/byPublished',
-                                //method: 'GET',
-                                //success: function(conn, response) {
-                                   // console.log(conn.responseText);
-                                   // if(conn.responseText != null) {
-                                        Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().reload();
-                                    //}
-                               // }
-                            //});
-                            //Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().load();
-                            //this.setLoginForm();
+                        beforeanimate: function(el, startTime, eOpts) {
+                            var wrcheader = Ext.ComponentQuery.query('#header-panel-id')[0];
+                            wrcheader.removeAll();
+                            wrccenter = Ext.ComponentQuery.query('#center-panel-id')[0];
+                            wrccenter.removeAll();
+                            wrcheader.add(Ext.widget('admHeader'));
+                            //wrccenter.add(Ext.widget('adminPanel'));
+                            
                             var userId = Ext.util.Cookies.get('userId');
                             Ext.Ajax.request({
                                 url: '/SFO/rest/user/byId',
@@ -271,13 +258,14 @@ Ext.define('COO.util.service',{
                                 },
                                 success: function(conn, response) {
                                 //Ext.ComponentQuery.query('#form-login-user-id')[0].getForm().setValues(Ext.decode(conn.responseText));
-                                Ext.ComponentQuery.query('#form-login-user-id')[0].update('<div>' + Ext.decode(conn.responseText).login + '</div>');
+                                    Ext.ComponentQuery.query('#form-login-user-id')[0].update('<div>' + Ext.decode(conn.responseText).login + '</div>');
+
                                 }
                             });
                             //wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
                             //wrc.removeAll();
                             //Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
-                        
+                            //Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().load();
                             cityId = Ext.util.Cookies.get('cityId');
                             if(cityId != null || cityId != '' || cityId != undefined) {
                                 Ext.Ajax.request({
@@ -289,14 +277,17 @@ Ext.define('COO.util.service',{
                                     success: function(conn, response){
                                         var cityName = Ext.decode(conn.responseText).cityName;
                                         Ext.ComponentQuery.query('#admheader-combo-choose-city-id')[0].setValue(cityName, true);
+                                        //Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().load();
                                     }
                                 });
                             }
+                            
                         }
                     }
                 });
             });
             task.delay(1000);
+            //Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().load();
         },
         setLoginForm: function() {
             var userId = Ext.util.Cookies.get('userId');
@@ -347,9 +338,11 @@ Ext.define('COO.util.service',{
             console.log(rec.data);
             Ext.ComponentQuery.query('#edit-company-form-id')[0].getForm().setValues(rec.data);
             Ext.ComponentQuery.query('#edit-company-combo-choose-city-id')[0].setValue(rec.data.city.cityName);
-            Ext.ComponentQuery.query('#edit-combo-choose-subRubric-id')[0].setValue(rec.data.rubric.name);
             Ext.ComponentQuery.query('#textarea-info-id')[0].setValue(rec.data.info.info);
+            Ext.ComponentQuery.query('#hidden-info-id')[0].setValue(rec.data.info.infoId);
+            Ext.ComponentQuery.query('#hidden-logo-id')[0].setValue(rec.data.logo.logoId);
             console.log(rec.data.info.info);
+            console.log(Ext.ComponentQuery.query('#hidden-info-id')[0].getValue());
 
             Ext.Ajax.request({
                 url: '/SFO/rest/rubric/mainRubric',
@@ -359,6 +352,7 @@ Ext.define('COO.util.service',{
                 },
                 success: function(conn, response, text) {
                     Ext.ComponentQuery.query('#edit-combo-choose-mainRubric-id')[0].setValue(Ext.decode(conn.responseText).name);
+                    Ext.ComponentQuery.query('#edit-combo-choose-subRubric-id')[0].setValue(rec.data.rubric.name);
                 }
             });
             Ext.ComponentQuery.query('#edit-image-upload-logo-id')[0].setSrc('/SFO/rest/logo/byId?logoId='+rec.data.logo.logoId);

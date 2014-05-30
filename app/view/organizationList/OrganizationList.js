@@ -21,6 +21,10 @@ Ext.define('COO.view.organizationList.OrganizationList',{
 		]
 	},
 	viewConfig: {
-		loadingText: 'Загрузка данных...'
+		enableTextSelection: true,
+		emptyText: 'Организаций нет',
+        deferEmptyText: false,
+        loadingText: 'Загрузка данных...',
+		stripeRows: false
 	}
 });

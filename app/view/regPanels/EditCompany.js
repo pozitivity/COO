@@ -124,6 +124,16 @@ Ext.define('COO.view.regPanels.EditCompany',{
 					allowBlank: false
 				},
 				{
+					xtype: 'hidden',
+					name: 'infoId',
+					itemId: 'hidden-info-id'
+				},
+				{
+					xtype: 'hidden',
+					name: 'logoId',
+					itemId: 'hidden-logo-id'
+				},
+				{
 					xtype: 'textarea',
 					name: 'info',
 					padding: '10 10',

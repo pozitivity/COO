@@ -7,6 +7,7 @@ Ext.define('COO.controller.WelcomePanel',{
 
 	requires: [
 		'COO.view.Main',
+		'COO.view.rubricList.RubricList'
 	],
 	
 	init: function(application) {
@@ -23,6 +24,7 @@ Ext.define('COO.controller.WelcomePanel',{
 	
 	onCloseWelcomePanel: function(button, e, options) {
 		console.log('Button Ok, thanks pressed');
+		Ext.ComponentQuery.query('#rubric-list-gridpanel')[0].getStore().reload();
 		var wrc = Ext.ComponentQuery.query('#welcome-panel-id')[0];
 		wrc.removeAll();
 		wrc.close();

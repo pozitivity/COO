@@ -27,7 +27,7 @@ Ext.define('COO.Application', {
         'mainPanels.MyCompanies',
         'mainPanels.Profile',
         'admPanel.AdmHeader',
-        //'mainPanels.EditCompany'
+        'mainPanels.EditCompany'
     ],
 
     stores: [

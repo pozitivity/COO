@@ -24,12 +24,14 @@ Ext.define('COO.view.regPanels.Profile',{
 				{
 					xtype: 'textfield',
 					name: 'password',
+					itemId: 'textfield-password-id',
 					fieldLabel: 'Пароль',
 					padding: '10 10'
 				},
 				{
 					xtype: 'textfield',
 					name: 'email',
+					itemId: 'textfield-email-id',
 					padding: '10 10',
 					fieldLabel: 'E-mail'
 				},
@@ -41,9 +43,11 @@ Ext.define('COO.view.regPanels.Profile',{
 					padding: '10 10',
 					editable: false,
 					displayField: 'cityName',
+					allowBlank: false
 				},
 				{
 					xtype: 'panel',
+					padding: '10 10',
 					layout: {
 						type: 'hbox',
 						pack: 'end',
@@ -53,7 +57,9 @@ Ext.define('COO.view.regPanels.Profile',{
 						{
 							xtype: 'button',
 							text: 'Сохранить',
-							itemId: 'save-profile-form-id'
+							itemId: 'save-profile-form-id',
+							formBind: true,
+							disabled: true
 						}
 					]
 				}

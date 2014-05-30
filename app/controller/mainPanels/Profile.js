@@ -12,6 +12,10 @@ Ext.define('COO.controller.mainPanels.Profile',{
 		{
 			ref: 'profileComboCityRef',
 			selector: '#profile-choose-city-id'
+		},
+		{
+			ref: 'buttonSaveProfileRef',
+			selector: '#save-profile-form-id'
 		}
 	],
 	init: function(application) {

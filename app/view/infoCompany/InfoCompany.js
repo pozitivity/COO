@@ -48,7 +48,7 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
 			},
 
 			defaults: {
-                labelWidth: 100
+                labelWidth: 90
             },
 
 			items:[
@@ -65,6 +65,8 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
                 {
                     xtype: 'displayfield',
                     name: 'address',
+                    width: 320,
+                    autoScroll: true,
                     fieldLabel:'Адрес',
                     margin: '0 0 0 20'
                 },
@@ -72,7 +74,7 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
                 	xtype: 'displayfield',
                 	name: 'postcode',
                 	fieldLabel: 'Индекс',
-                    margin: '0 0 0 20'
+                    margin: '30 0 0 20'
                 },
                 {
 					xtype: 'displayfield',

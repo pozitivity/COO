@@ -24,8 +24,11 @@ Ext.define('COO.view.rubricList.RubricList',{
 		]
 	},
 	viewConfig:{
-		loadingText: 'Загрузка данных...',
-		stripeRows: false
+		enableTextSelection: true,
+		//emptyText: 'Подрубрик нет',
+        //deferEmptyText: false,
+        loadingText: 'Загрузка данных...',
+		//stripeRows: false
 	},
 	tbar: [
     {

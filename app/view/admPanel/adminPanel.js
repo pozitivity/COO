@@ -27,16 +27,22 @@ Ext.define('COO.view.admPanel.adminPanel',{
 			columns: [
 				{
 					dataIndex: 'name',
-					flex: 2
+					flex: 1
 				},
-				/*{
-					dataIndex: 'login',
+				{
+					dataIndex: 'user',
 					flex: 1,
-					renderer: function(grid, rowIndex, colIndex) {
-						var rec = this.getStore().geAt(rowIndex);
-						console.log(rec.data.user.login);
+					renderer: function(val) {
+						return val.login;
 					}
-				},*/
+				},
+				{
+					dataIndex: 'city',
+					flex: 1,
+					renderer: function(val) {
+						return val.cityName;
+					}
+				},
 				{
 					xtype: 'actioncolumn',
 					itemId: 'adm-view-company-id',
@@ -52,7 +58,15 @@ Ext.define('COO.view.admPanel.adminPanel',{
 						}
 					]
 				}
-			]
+			],
+
+			viewConfig: {
+				enableTextSelection: true,
+				emptyText: 'Неопубликованных компаний нет',
+                deferEmptyText: false,
+                loadingText: 'Загрузка данных...',
+				stripeRows: false
+			}
 		}
 	]
 });

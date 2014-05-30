@@ -32,9 +32,6 @@ Ext.define('COO.controller.Login', {
     	password = this.getLoginFormRef().getForm().getValues().password;
     	login = this.getLoginFormRef().getForm().getValues().login;
     	dialog = Ext.WindowManager.getActive();
-        console.log(dialog);
-        console.log(login);
-        //debugger;
     	COO.util.service.login(login, password, dialog);
     },
     onButtonCancelClick: function(button, e, options) {

@@ -77,7 +77,14 @@ Ext.define('COO.view.regPanels.MyCompanies',{
 						}
 					]
 				}
-			]
+			],
+			viewConfig: {
+				enableTextSelection: true,
+				emptyText: 'У вас нет компаний',
+                deferEmptyText: false,
+                loadingText: 'Загрузка данных...',
+				stripeRows: false
+			}
 		},
 		{
 			xtype: 'panel',

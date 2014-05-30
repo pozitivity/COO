@@ -33,7 +33,7 @@ Ext.define('COO.controller.RubricList',{
 		var cityId = Ext.util.Cookies.get('cityId');
 		
 		Ext.ComponentQuery.query('#field-back-rubricId')[0].getForm().setValues(record.data);
-		if (rubricId <= 5) {
+		if (rubricId <= 4) {
 				this.getRubricListGridpanel().getStore().reload({
 				params: {
 					mainRubricId: rubricId

@@ -15,6 +15,14 @@ Ext.define('COO.controller.admPanel.AdmHeader',{
 			ref: 'admHeaderComboChooseCityRef',
 			selector: '#admheader-combo-choose-city-id'
 		},
+		{
+			ref: 'admGridPanelRef',
+			selector: '#adm-organization-list-gridpanel'
+		},
+		{
+			ref: 'buttonDeleteCompanyRef',
+			selector: '#view-delete-company-id'
+		}
 	],
 	init: function(application) {
 		console.log('[OK] Init AdmHeader controller');
@@ -55,16 +63,20 @@ Ext.define('COO.controller.admPanel.AdmHeader',{
                     icon: Ext.Msg.INFO,
                     buttons: Ext.Msg.OK
 				});
-				Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().load();
-				//this.sendMail();
-			}
+				button.setDisabled(true);
+				Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().reload();
+				var email = Ext.decode(conn.responseText).user.email;
+				var name = Ext.decode(conn.responseText).name;
+				console.log(email);
+				this.sendMail(email, name);
+				this.getButtonDeleteCompanyRef().setDisabled(true);
+			},
+			scope: this
 		});
 	},
-	sendMail:  function(email) {
+	sendMail:  function(email, name) {
 		var subject_published = "Организация опубликована";
-        var body_published = 'Вы успешно прошли регистрацию на сайте coo.com! '+
-            ' Ваш логин: ' + login + '  Ваш пароль: ' + password + '  Ваш E-mail: ' + email + 
-            '  Ваш город: ' + cityName;
+        var body_published = Ext.htmlDecode('Ваша организация ' + name + ' успешно опубликована на нашем сайте!');
             Ext.Ajax.request({
                 url: '/SFO/rest/sendmail/sendMailReg',
                 method: 'GET',
@@ -80,6 +92,23 @@ Ext.define('COO.controller.admPanel.AdmHeader',{
 	},
 	onButtonViewDeleteCompanyClick: function(button, e, options) {
 		console.log('Button view delete was clicked');
+		var organizationId = Ext.ComponentQuery.query('#view-info-form-company-id')[0].getForm().getValues().organizationId;
+		Ext.Ajax.request({
+			url: '/SFO/rest/organization/deleteOrganization',
+			method: 'DELETE',
+			params: {
+
+				organizationId: organizationId
+			},
+			success: function(conn, response) {
+				console.log('Organization success deleted');
+				var win = Ext.WindowManager.getActive();
+				if(win) {
+					win.close();
+				}
+				Ext.ComponentQuery.query('#adm-organization-list-gridpanel')[0].getStore().reload();
+			}
+		});
 	},
 	onButtonAdmLogoutClick: function(button, e, options) {
 		console.log('Button adm logout click');
@@ -98,6 +127,7 @@ Ext.define('COO.controller.admPanel.AdmHeader',{
 		var wrc = Ext.ComponentQuery.query('#center-panel-id')[0];
 		wrc.removeAll();
 		wrc.add(Ext.widget('adminPanel'));
+		this.getAdmGridPanelRef().getStore().reload();
 		Ext.ComponentQuery.query('#organization-list-gridpanel')[0].hide();
 	},
 	onChangeCityInAdmHeader: function(oldValue, newValue, eOpts) {

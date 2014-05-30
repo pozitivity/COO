@@ -9,7 +9,7 @@ Ext.define('COO.view.admPanel.viewPanel',{
 
 	autoscroll: true,
 
-	width: 650,
+	width: 700,
 	minHeight: 450,
 	layout: {
 		type: 'vbox',
@@ -60,7 +60,7 @@ Ext.define('COO.view.admPanel.viewPanel',{
 					},
 
 					defaults: {
-                		labelWidth: 100
+                		labelWidth: 90
             		},
 
 					items:[
@@ -78,13 +78,14 @@ Ext.define('COO.view.admPanel.viewPanel',{
                     	xtype: 'displayfield',
                     	name: 'address',
                     	fieldLabel:'Адрес',
+                    	width: 320,
                     	margin: '0 0 0 20'
                 	},
                 	{
                 		xtype: 'displayfield',
                 		name: 'postcode',
                 		fieldLabel: 'Индекс',
-                    	margin: '0 0 0 20'
+                    	margin: '30 0 0 20'
                 	},
                 	{
 						xtype: 'displayfield',
