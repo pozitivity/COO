@@ -47,7 +47,7 @@ Ext.define('COO.view.regPanels.NewCompany',{
 							flex: 1,
 							name: 'postcode',
 							emptyText: 'Индекс',
-							allowBlank: false
+							allowBlank: true
 						}
 					]
 				},

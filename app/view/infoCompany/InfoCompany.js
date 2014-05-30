@@ -91,7 +91,7 @@ Ext.define('COO.view.infoCompany.InfoCompany',{
     },
     {
     	xtype: 'form',
-        width: 550,
+        width: 570,
         //height: 50,
         autoScroll: true,
     	itemId: 'add-info-company-id',

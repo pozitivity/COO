@@ -151,17 +151,28 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 					params: values,
 					success: function(conn, response) {
 						console.log('Success upload organization');
-						this.updateMyCompaniesList();
+						//this.updateMyCompaniesList();
 						var win = Ext.WindowManager.getActive();
 						if(win) { win.close(); }
+						this.updateMyCompaniesList();
+						Ext.Msg.show({
+							title: 'Уведомление',
+							msg: 'Компания создана',
+							icon: Ext.Msg.INFO,
+							buttons: Ext.Msg.OK
+						});
 					},
-					scope: this
+					scope: this,
 				});
             },
             scope: this
         });
+        //this.updateMyCompaniesList();
+					var win = Ext.WindowManager.getActive();
+						if(win) { win.close(); }
 	},
 	updateMyCompaniesList: function() {
+		console.log('update list of organizations');
 		this.getMyOrganizationListGridPanelRef().getStore().load({
 			params: {
 				userId: Ext.util.Cookies.get('userId')
