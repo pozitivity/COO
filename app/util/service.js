@@ -116,6 +116,7 @@ Ext.define('COO.util.service',{
                     },
                     success: function(conn, response){
                         Ext.util.Cookies.set('userId', Ext.decode(conn.responseText).userId);
+                        debugger;
                         if(Ext.Number.from(Ext.decode(conn.responseText).typeUser.typeUserId, 1) === 2) {
                             this.initAdmApp();
                         } else {
@@ -316,6 +317,11 @@ Ext.define('COO.util.service',{
                 },
                 success: function(conn, response) {
                     console.log('Organization successed deleted');
+                    grid.getStore().load({
+                params: {
+                    userId: Ext.Number.from(Ext.util.Cookies.get('userId'),0)
+                }
+            });
                 }
             });
             grid.getStore().load({

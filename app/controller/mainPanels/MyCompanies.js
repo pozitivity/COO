@@ -123,11 +123,36 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
 			},
 			success: function(conn, response) {
 				//values.infoId = 8;
-				values.infoId = Ext.Number.from(Ext.decode(conn.responseText).infoId, 8);
+				//values.infoId = Ext.Number.from(Ext.decode(conn.responseText).infoId, 8);
+				values.infoId = Ext.decode(conn.responseText).infoId
 				//console.log(values.infoId);
 			}
 		});
 		
+		if(Ext.ComponentQuery.query('#field-upload-logo-id')[0].getSubmitValue() === ""){
+			values.logoId = 75;
+			console.log(values);
+			Ext.Ajax.request({
+					url: '/SFO/rest/organization/newOrganization',
+					method: 'POST',
+					params: values,
+					success: function(conn, response) {
+						console.log('Success upload organization');
+						//this.updateMyCompaniesList();
+						var win = Ext.WindowManager.getActive();
+						if(win) { win.close(); }
+						this.updateMyCompaniesList();
+						Ext.Msg.show({
+							title: 'Уведомление',
+							msg: 'Компания создана',
+							icon: Ext.Msg.INFO,
+							buttons: Ext.Msg.OK
+						});
+					},
+					scope: this,
+				});
+		} else {
+
 		this.getUploadLogoFormRef().getForm().submit({
 			standartSubmit: false,
             method:'POST',
@@ -170,6 +195,7 @@ Ext.define('COO.controller.mainPanels.MyCompanies',{
         //this.updateMyCompaniesList();
 					var win = Ext.WindowManager.getActive();
 						if(win) { win.close(); }
+	}
 	},
 	updateMyCompaniesList: function() {
 		console.log('update list of organizations');

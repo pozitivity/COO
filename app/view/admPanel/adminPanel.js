@@ -9,6 +9,12 @@ Ext.define('COO.view.admPanel.adminPanel',{
 
 	items: [
 		{
+			xtype: 'textfield',
+			itemId: 'adm-search-field-id',
+			emptyText: 'Поиск по организациям',
+			margin: '40 0 0 0'
+		},
+		{
 			xtype: 'grid',
 			autoScroll: true,
 			width: 700,

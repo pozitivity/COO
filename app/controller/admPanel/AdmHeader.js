@@ -41,8 +41,30 @@ Ext.define('COO.controller.admPanel.AdmHeader',{
 			},
 			"button#view-published-company-id": {
 				click: this.onButtonViewPublishedCompanyClick
+			},
+			"#adm-search-field-id": {
+				change: this.onSearchFieldCompanyInAdm
 			}
 		});
+	},
+	onSearchFieldCompanyInAdm: function(textfield, newValue, oldValue, eOpts) {
+		console.log('SearchTextCompanyFieldChange ' + newValue);
+        var me = this;
+        var searchValue = newValue;
+        var SearchRegExp = new RegExp('^'+searchValue, 'igm');
+
+        var companyList = me.getAdmGridPanelRef();
+        companyList.view.refresh();
+
+        this.clearCompanySearchFilter();
+
+        companyList.store.filter('name',SearchRegExp);
+        companyList.getSelectionModel().select(0);
+
+        textfield.focus();
+	},
+	clearCompanySearchFilter: function(){
+		this.getAdmGridPanelRef().store.clearFilter();
 	},
 	onButtonViewPublishedCompanyClick: function(button, e, options) {
 		console.log('Button published was clicked');
@@ -68,6 +90,8 @@ Ext.define('COO.controller.admPanel.AdmHeader',{
 				var email = Ext.decode(conn.responseText).user.email;
 				var name = Ext.decode(conn.responseText).name;
 				console.log(email);
+				var win = Ext.WindowManager.getActive();
+				if(win) {win.close();}
 				this.sendMail(email, name);
 				this.getButtonDeleteCompanyRef().setDisabled(true);
 			},
